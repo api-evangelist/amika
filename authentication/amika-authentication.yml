@@ -1,0 +1,49 @@
+generated: '2026-07-17'
+method: searched
+source: https://docs.amika.dev/reference/auth.md
+docs: https://docs.amika.dev/reference/auth
+summary:
+  types: [http, apiKey, oauth2]
+  http_schemes: [bearer]
+  api_key_in: [header]
+  oauth2_flows: [deviceAuthorization]
+  notes: >-
+    The OpenAPI declares two security requirements per operation (bearerAuth and
+    cookieAuth) but does not define them under components.securitySchemes. The
+    profile below is reconstructed from the published authentication docs.
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: >-
+    Bearer token in the Authorization header. The token is either a long-lived
+    API key created in the web UI (app.amika.dev/settings) or a short-lived
+    access token minted by the OAuth device-authorization login flow. The CLI
+    resolves credentials in precedence order: AMIKA_API_KEY env var, stored API
+    key file (${XDG_STATE_HOME}/amika/api-key.json), then browser login session.
+  sources: [https://docs.amika.dev/reference/auth]
+- name: apiKey
+  type: apiKey
+  in: header
+  description: >-
+    API keys generated in the web UI for non-interactive/CI use. Provided via
+    the AMIKA_API_KEY environment variable or on-disk key file, presented as a
+    bearer token to the API. Managed through the /api-keys operations.
+  sources: [https://docs.amika.dev/reference/auth]
+- name: deviceAuthorization
+  type: oauth2
+  flow: deviceAuthorization
+  description: >-
+    Interactive browser login for local development. The CLI requests a device
+    code, the user authorizes in the browser, the CLI polls until complete, and
+    a session is stored with access token, refresh token, email, and org.
+    Tokens auto-refresh within 60 seconds of expiry. Identity is brokered by
+    WorkOS.
+  sources: [https://docs.amika.dev/reference/auth]
+- name: cookieAuth
+  type: apiKey
+  in: cookie
+  description: >-
+    Session cookie accepted for browser-originated (web app) requests, offered
+    as an alternative to bearerAuth on every operation.
+  sources: [openapi/amika-openapi.json]
