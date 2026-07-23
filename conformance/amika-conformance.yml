@@ -1,0 +1,33 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/amika-openapi.json
+standards:
+- id: openapi-3.1
+  conforms: true
+  evidence: openapi field is 3.1.0 with 49 operations and 69 component schemas
+- id: oauth2-device-authorization
+  conforms: true
+  evidence: docs document an OAuth device-authorization login flow (WorkOS-brokered)
+- id: oidc
+  conforms: partial
+  evidence: identity brokered by WorkOS; no public /.well-known/openid-configuration served on amika hosts (soft-404 SPA)
+- id: bearer-token-auth
+  conforms: true
+  evidence: every operation requires bearerAuth (or cookieAuth)
+- id: cursor-pagination
+  conforms: true
+  evidence: list operations expose cursor/limit query parameters
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: errors use a custom { type, error_code, message, details } JSON envelope, not application/problem+json
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns the SPA app shell, no RFC 9116 document
+- id: rfc8594-deprecation-sunset
+  conforms: false
+  evidence: no Sunset/Deprecation header support documented
+compliance_program:
+  published: false
+  note: >-
+    No public trust center or named certifications (SOC 2 / ISO 27001 / etc.)
+    were found. No type:Compliance pointer is emitted.

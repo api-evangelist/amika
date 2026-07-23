@@ -1,0 +1,41 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/amika-openapi.json
+format: json
+envelope:
+  shape: { type: error, error_code: string, message: string, details: object }
+  trace_header: x-trace-id
+  note: >-
+    Custom JSON error envelope (not RFC 9457 problem+json). error_code is a
+    free-form string (no enum published in the spec); message is human-readable;
+    details is an optional object. Every error response also returns an
+    x-trace-id header for log correlation.
+problems:
+- status: 400
+  title: Bad Request
+  description: Request validation failed (malformed body, invalid parameters).
+  occurrences: 34
+- status: 401
+  title: Unauthorized
+  description: Missing or invalid bearer token / session cookie.
+  occurrences: 74
+- status: 403
+  title: Forbidden
+  description: Authenticated but not permitted for this org resource.
+  occurrences: 74
+- status: 404
+  title: Not Found
+  description: Referenced resource (sandbox, repository, secret, snapshot, session) does not exist.
+  occurrences: 42
+- status: 409
+  title: Conflict
+  description: State conflict (e.g. duplicate resource, invalid lifecycle transition).
+  occurrences: 11
+- status: 500
+  title: Internal Server Error
+  description: Unexpected server error.
+  occurrences: 4
+- status: 502
+  title: Bad Gateway
+  description: Upstream sandbox/provider (e.g. Daytona) failure or timeout.
+  occurrences: 10

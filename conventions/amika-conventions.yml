@@ -1,0 +1,54 @@
+generated: '2026-07-17'
+method: searched
+source: https://docs.amika.dev/reference/api-reference
+derived_from: openapi/amika-openapi.json
+authentication:
+  style: bearer
+  detail: >-
+    Authorization: Bearer <token> where the token is an API key or an OAuth
+    device-flow access token; a session cookie (cookieAuth) is also accepted.
+    See authentication/amika-authentication.yml.
+base_url: https://app.amika.dev/api/v0beta1
+versioning:
+  scheme: uri-path
+  current: v0beta1
+  stability: beta
+  detail: The version is embedded in the base path (/api/v0beta1).
+pagination:
+  style: cursor
+  params: [cursor, limit, offset, after, since]
+  detail: >-
+    List endpoints accept cursor-based pagination via a cursor query param plus
+    limit; some collections also support offset and time-window filters (after,
+    since). Responses are page objects (e.g. ListSandboxesResponse) wrapping the
+    item array.
+request_tracing:
+  response_header: x-trace-id
+  detail: >-
+    Every response (including errors) carries an x-trace-id header, a
+    per-request trace id for correlating responses with server logs.
+error_envelope:
+  format: json
+  shape:
+    type: error
+    error_code: string
+    message: string
+    details: object
+  detail: >-
+    Errors return a JSON object { type: "error", error_code, message, details }.
+    This is a custom envelope, not RFC 9457 problem+json. See
+    errors/amika-problem-types.yml.
+idempotency:
+  supported: false
+  detail: >-
+    No Idempotency-Key header or idempotency parameter is documented or present
+    in the OpenAPI. Write operations are not advertised as idempotent-safe on
+    retry. (No type:Idempotency pointer is emitted for this provider.)
+rate_limiting:
+  documented: false
+  detail: No public rate-limit headers or limits are documented for v0beta1.
+cross_links:
+  authentication: authentication/amika-authentication.yml
+  errors: errors/amika-problem-types.yml
+  lifecycle: lifecycle/amika-lifecycle.yml
+  data_model: data-model/amika-data-model.yml

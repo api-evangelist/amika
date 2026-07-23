@@ -1,0 +1,30 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Amika API
+  version: 1.0.0
+extends: openapi/amika-openapi.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: '2026-07-17'
+    x-apievangelist-base-url: https://app.amika.dev/api/v0beta1
+    x-apievangelist-notes: >-
+      The published spec omits components.securitySchemes though every operation
+      references bearerAuth and cookieAuth, and omits operationIds. See
+      authentication/amika-authentication.yml and conventions/amika-conventions.yml.
+- target: $.components
+  update:
+    securitySchemes:
+      bearerAuth:
+        type: http
+        scheme: bearer
+        description: API key or OAuth device-flow access token as a bearer token.
+      cookieAuth:
+        type: apiKey
+        in: cookie
+        name: session
+        description: Browser session cookie accepted as an alternative to bearerAuth.
+- target: $.info
+  update:
+    x-apievangelist-error-format: 'custom-json (type/error_code/message/details), not RFC 9457'
+    x-apievangelist-trace-header: x-trace-id

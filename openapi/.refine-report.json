@@ -1,0 +1,36 @@
+{
+  "provider": "amika",
+  "sources": [
+    "amika-api-keys-api-openapi.yml",
+    "amika-docker-registries-api-openapi.yml",
+    "amika-downloads-api-openapi.yml",
+    "amika-git-user-settings-api-openapi.yml",
+    "amika-integrations-api-openapi.yml",
+    "amika-repositories-api-openapi.yml",
+    "amika-sandboxes-api-openapi.yml",
+    "amika-sandboxsnapshots-api-openapi.yml",
+    "amika-secrets-api-openapi.yml",
+    "amika-services-api-openapi.yml",
+    "amika-slack-api-openapi.yml",
+    "amika-uploads-api-openapi.yml"
+  ],
+  "outputs": [
+    "amika-api-keys-api-openapi.yml",
+    "amika-docker-registries-api-openapi.yml",
+    "amika-downloads-api-openapi.yml",
+    "amika-git-user-settings-api-openapi.yml",
+    "amika-integrations-api-openapi.yml",
+    "amika-repositories-api-openapi.yml",
+    "amika-sandboxes-api-openapi.yml",
+    "amika-sandboxsnapshots-api-openapi.yml",
+    "amika-secrets-api-openapi.yml",
+    "amika-services-api-openapi.yml",
+    "amika-slack-api-openapi.yml",
+    "amika-uploads-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

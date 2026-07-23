@@ -1,0 +1,174 @@
+openapi: 3.1.0
+info:
+  title: Amika API — v0beta1 API keys Integrations API
+  version: 0beta1
+tags:
+- name: Integrations
+paths:
+  /integrations/credentials:
+    get:
+      tags:
+      - Integrations
+      summary: List the caller's connected integrations
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          description: Connected integration providers.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListIntegrationCredentialsResponse'
+        '401':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '403':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+  /integrations/{provider}/credentials:
+    delete:
+      tags:
+      - Integrations
+      summary: Disconnect an integration provider for the caller
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      parameters:
+      - schema:
+          type: string
+          minLength: 1
+        required: true
+        name: provider
+        in: path
+      responses:
+        '204':
+          description: Disconnected.
+        '401':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '403':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+components:
+  schemas:
+    ListIntegrationCredentialsResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          provider:
+            type: string
+          connected:
+            type: boolean
+        required:
+        - provider
+        - connected

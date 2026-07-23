@@ -1,0 +1,29 @@
+generated: '2026-07-17'
+method: searched
+source: https://docs.amika.dev/architecture/roadmap
+versioning:
+  scheme: uri-path
+  current: v0beta1
+  stability: beta
+  detail: >-
+    The API is explicitly a beta (v0beta1) with the version pinned in the base
+    path. Breaking changes are expected while in beta.
+roadmap:
+  url: https://docs.amika.dev/architecture/roadmap
+  detail: >-
+    Public architecture roadmap documenting current capabilities and planned
+    system evolution.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  detail: No formal deprecation policy or RFC 8594 Sunset/Deprecation header support was found.
+sla:
+  url: null
+  uptime_target: null
+status_page: null
+deprecated_operations: []
+notes: >-
+  No dedicated status page or dated changelog was found for Amika at the time of
+  enrichment. Because there is no status page and no deprecation policy, no
+  StatusPage or Deprecation canonical pointers are emitted (only Lifecycle and
+  Roadmap).

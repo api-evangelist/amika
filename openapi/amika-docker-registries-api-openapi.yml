@@ -1,0 +1,424 @@
+openapi: 3.1.0
+info:
+  title: Amika API — v0beta1 API keys Docker registries API
+  version: 0beta1
+tags:
+- name: Docker registries
+paths:
+  /docker-registries:
+    get:
+      tags:
+      - Docker registries
+      summary: List the org's docker registries
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          description: Array of docker registries owned by the caller's org.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListDockerRegistriesResponse'
+        '401':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '403':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+    post:
+      tags:
+      - Docker registries
+      summary: Register a docker registry
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDockerRegistryRequest'
+      responses:
+        '201':
+          description: Created docker registry row.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DockerRegistry'
+        '400':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '401':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '403':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '502':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+  /docker-registries/{id}:
+    delete:
+      tags:
+      - Docker registries
+      summary: Delete a docker registry
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      parameters:
+      - schema:
+          type: string
+          minLength: 1
+        required: true
+        name: id
+        in: path
+      responses:
+        '204':
+          description: Deleted.
+        '401':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '403':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '404':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '502':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+components:
+  schemas:
+    DockerRegistry:
+      type: object
+      properties:
+        id:
+          type: string
+        org_id:
+          type: string
+        name:
+          type: string
+        url:
+          type: string
+        daytona_registry_id:
+          type: string
+        created_at:
+          anyOf:
+          - type: string
+          - type: string
+            format: date-time
+        updated_at:
+          anyOf:
+          - type: string
+          - type: string
+            format: date-time
+        username:
+          type: string
+          nullable: true
+        registry_type:
+          type: string
+          nullable: true
+      required:
+      - id
+      - org_id
+      - name
+      - url
+      - daytona_registry_id
+      - created_at
+      - updated_at
+    CreateDockerRegistryRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+        url:
+          type: string
+          minLength: 1
+        username:
+          type: string
+          minLength: 1
+        password:
+          type: string
+          minLength: 1
+        project:
+          type: string
+      required:
+      - name
+      - url
+      - username
+      - password
+    ListDockerRegistriesResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/DockerRegistry'

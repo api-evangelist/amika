@@ -1,0 +1,1037 @@
+openapi: 3.1.0
+info:
+  title: Amika API — v0beta1 API keys SandboxSnapshots API
+  version: 0beta1
+tags:
+- name: SandboxSnapshots
+paths:
+  /sandbox-snapshots:
+    get:
+      tags:
+      - SandboxSnapshots
+      summary: List sandbox-captured snapshots for the caller's org
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      parameters:
+      - schema:
+          type: string
+          description: If set, only return snapshots taken from sandboxes attached to this repository.
+        required: false
+        description: If set, only return snapshots taken from sandboxes attached to this repository.
+        name: repository_id
+        in: query
+      - schema:
+          type: string
+          description: If set, only return snapshots captured from this sandbox.
+        required: false
+        description: If set, only return snapshots captured from this sandbox.
+        name: source_sandbox_id
+        in: query
+      responses:
+        '200':
+          description: Snapshots.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListSandboxSnapshotsResponse'
+        '401':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '403':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+    post:
+      tags:
+      - SandboxSnapshots
+      summary: Start capturing a snapshot from a running sandbox
+      description: Validates the request, records a snapshot in the `capturing` state, and runs the (slow) Daytona capture in the background. Returns 202 immediately; poll the listing for the row to reach `active`/`failed`.
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSandboxSnapshotRequest'
+      responses:
+        '202':
+          description: Snapshot capture started.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SandboxSnapshot'
+        '400':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '401':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '403':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '404':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '409':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '502':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+  /sandbox-snapshots/scrub-preview:
+    get:
+      tags:
+      - SandboxSnapshots
+      summary: Preview which injected secrets a 'snapshot and delete' would remove
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      parameters:
+      - schema:
+          type: string
+          minLength: 1
+          description: The sandbox whose injected secrets would be scrubbed.
+        required: false
+        description: The sandbox whose injected secrets would be scrubbed.
+        name: sandbox
+        in: query
+      - schema:
+          type: string
+          enum:
+          - name
+          - id
+          - ref
+          - name_or_id
+          description: 'How to interpret `sandbox`: name (default), id, or ref/name_or_id (matches either; rejects ambiguity).'
+        required: false
+        description: 'How to interpret `sandbox`: name (default), id, or ref/name_or_id (matches either; rejects ambiguity).'
+        name: by
+        in: query
+      - schema:
+          type: string
+          minLength: 1
+          description: 'Deprecated: use `sandbox` with `by=id` instead.'
+        required: false
+        description: 'Deprecated: use `sandbox` with `by=id` instead.'
+        name: sandbox_id
+        in: query
+      responses:
+        '200':
+          description: Secrets that would be scrubbed (paths + names only).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SandboxScrubPreviewResponse'
+        '400':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '401':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '403':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '404':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '409':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '502':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+  /sandbox-snapshots/{ref}:
+    get:
+      tags:
+      - SandboxSnapshots
+      summary: Read a sandbox snapshot by name (default) or id
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      parameters:
+      - schema:
+          type: string
+          minLength: 1
+          description: 'Snapshot reference: its fully-qualified name (default) or row id. Use the `by` query param to choose.'
+        required: true
+        description: 'Snapshot reference: its fully-qualified name (default) or row id. Use the `by` query param to choose.'
+        name: ref
+        in: path
+      - schema:
+          type: string
+          enum:
+          - name
+          - id
+          - ref
+          - name_or_id
+          description: 'How to interpret the reference: name (default), id, or ref/name_or_id (matches either; rejects ambiguity).'
+        required: false
+        description: 'How to interpret the reference: name (default), id, or ref/name_or_id (matches either; rejects ambiguity).'
+        name: by
+        in: query
+      responses:
+        '200':
+          description: Snapshot.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SandboxSnapshot'
+        '401':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '403':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '404':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '409':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '502':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+    delete:
+      tags:
+      - SandboxSnapshots
+      summary: Delete a sandbox snapshot by name (default) or id
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      parameters:
+      - schema:
+          type: string
+          minLength: 1
+          description: 'Snapshot reference: its fully-qualified name (default) or row id. Use the `by` query param to choose.'
+        required: true
+        description: 'Snapshot reference: its fully-qualified name (default) or row id. Use the `by` query param to choose.'
+        name: ref
+        in: path
+      - schema:
+          type: string
+          enum:
+          - name
+          - id
+          - ref
+          - name_or_id
+          description: 'How to interpret the reference: name (default), id, or ref/name_or_id (matches either; rejects ambiguity).'
+        required: false
+        description: 'How to interpret the reference: name (default), id, or ref/name_or_id (matches either; rejects ambiguity).'
+        name: by
+        in: query
+      responses:
+        '204':
+          description: Deleted.
+        '401':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '403':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '404':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '409':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '502':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+components:
+  schemas:
+    SandboxSnapshot:
+      type: object
+      properties:
+        id:
+          type: string
+        snapshot:
+          type: string
+        provider:
+          type: string
+        description:
+          type: string
+          nullable: true
+        source_sandbox_id:
+          type: string
+          nullable: true
+        source_sandbox_name:
+          type: string
+          nullable: true
+        repository_id:
+          type: string
+          nullable: true
+        base_snapshot:
+          type: string
+          nullable: true
+        sandbox_preset:
+          type: string
+          nullable: true
+        sandbox_size:
+          type: string
+          nullable: true
+        state:
+          type: string
+        error_message:
+          type: string
+          nullable: true
+        created_at:
+          anyOf:
+          - type: string
+          - type: string
+            format: date-time
+        updated_at:
+          anyOf:
+          - type: string
+          - type: string
+            format: date-time
+        daytona:
+          $ref: '#/components/schemas/ExperimentalDaytonaSnapshot'
+      required:
+      - id
+      - snapshot
+      - provider
+      - description
+      - source_sandbox_id
+      - source_sandbox_name
+      - repository_id
+      - base_snapshot
+      - sandbox_preset
+      - sandbox_size
+      - state
+      - error_message
+      - created_at
+      - updated_at
+      - daytona
+    ListSandboxSnapshotsResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SandboxSnapshot'
+      required:
+      - items
+    ExperimentalDaytonaSnapshot:
+      type: object
+      nullable: true
+      properties:
+        name:
+          type: string
+        state:
+          type: string
+        imageName:
+          type: string
+        cpu:
+          type: number
+        memory:
+          type: number
+        disk:
+          type: number
+        createdAt:
+          anyOf:
+          - type: string
+          - type: string
+            format: date-time
+        updatedAt:
+          anyOf:
+          - type: string
+          - type: string
+            format: date-time
+      required:
+      - name
+      additionalProperties:
+        nullable: true
+    CreateSandboxSnapshotRequest:
+      type: object
+      properties:
+        sandbox_id:
+          type: string
+          minLength: 1
+          description: Source sandbox, by id.
+        sandbox_name:
+          type: string
+          minLength: 1
+          description: Source sandbox, by name.
+        sandbox_ref:
+          type: string
+          minLength: 1
+          description: Source sandbox, by id or name; rejected if both match.
+        name:
+          type: string
+          minLength: 1
+          maxLength: 80
+        description:
+          type: string
+          maxLength: 500
+        mode:
+          type: string
+          enum:
+          - scrub_and_delete
+          - full
+          default: scrub_and_delete
+          description: 'scrub_and_delete (default): remove Amika-injected secrets (credential files + injected env vars) from the sandbox, capture the snapshot from the clean filesystem, then delete the source sandbox. full: capture everything as-is — including secrets — and keep the sandbox running.'
+      required:
+      - name
+    SandboxScrubPreviewResponse:
+      type: object
+      properties:
+        files:
+          type: array
+          items:
+            type: string
+        env_vars:
+          type: array
+          items:
+            type: string
+      required:
+      - files
+      - env_vars

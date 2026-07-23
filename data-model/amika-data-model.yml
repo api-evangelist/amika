@@ -1,0 +1,51 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/amika-openapi.json
+notes: >-
+  Entity graph derived from OpenAPI component schemas and their id-reference
+  fields. Resources are scoped by org_id (and often user_id). Amika is a
+  multi-tenant control plane over sandboxes.
+entities:
+- name: Repository
+  id_field: id
+  belongs_to: [org, user]
+  fields: [repo_url, setup_script, start_script, sandbox_preset, sandbox_size, default_snapshot]
+- name: Sandbox
+  id_field: id
+  belongs_to: [org, user]
+  relationships:
+  - { kind: belongs_to, target: Repository, via: repo_id }
+  - { kind: has_many, target: AgentSession, via: sandbox_id }
+  - { kind: has_one, target: AgentSession, via: current_session_id, note: current session }
+  fields: [name, provider, provider_sandbox_id, provider_url, branch, commit_hash]
+- name: AgentSession
+  id_field: id
+  belongs_to: [org]
+  relationships:
+  - { kind: belongs_to, target: Sandbox, via: sandbox_id }
+  fields: [agent_name, status, started_at, ended_at, metadata]
+- name: SandboxSnapshot
+  id_field: id
+  relationships:
+  - { kind: belongs_to, target: Sandbox, via: source_sandbox_id }
+  - { kind: belongs_to, target: Repository, via: repository_id }
+  fields: [snapshot, provider, base_snapshot, sandbox_preset, sandbox_size, state]
+- name: Secret
+  id_field: id
+  belongs_to: [org, user]
+  fields: [name, description, scope]
+  note: provider-specific variants for claude, codex, opencode credentials
+- name: ServiceDefinition
+  id_field: id
+  fields: [name, ports]
+- name: DockerRegistry
+  id_field: id
+  belongs_to: [org]
+- name: ApiKey
+  id_field: id
+  belongs_to: [org]
+relationships_summary:
+- Sandbox belongs_to Repository (repo_id)
+- Sandbox has_many AgentSession (sandbox_id)
+- SandboxSnapshot belongs_to Sandbox (source_sandbox_id) and Repository (repository_id)
+- All top-level resources belong_to Org (org_id)

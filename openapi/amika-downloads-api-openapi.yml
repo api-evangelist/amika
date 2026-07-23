@@ -1,0 +1,454 @@
+openapi: 3.1.0
+info:
+  title: Amika API — v0beta1 API keys Downloads API
+  version: 0beta1
+tags:
+- name: Downloads
+paths:
+  /storage/downloads:
+    get:
+      tags:
+      - Downloads
+      summary: List the org's bucket as a batch of signed download URLs (one per object)
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      parameters:
+      - schema:
+          type: string
+        required: false
+        name: prefix
+        in: query
+      - schema:
+          type: string
+        required: false
+        name: cursor
+        in: query
+      - schema:
+          type: integer
+          minimum: 1
+          maximum: 1000
+        required: false
+        name: limit
+        in: query
+      responses:
+        '200':
+          description: A page of objects, each with a signed `download_url`. Object `key`s preserve the bucket's directory structure, so a client can recreate the tree by writing each object to its `key`. URLs are valid for `expires_in` seconds; follow `next_cursor` for the next page.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListDownloadsResponse'
+        '400':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '401':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '403':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '500':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '502':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+    post:
+      tags:
+      - Downloads
+      summary: Create a signed download URL for an object in the org's bucket
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDownloadRequest'
+      responses:
+        '201':
+          description: Signed download URL. GET `download_url` directly to fetch the object; valid for `expires_in` seconds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DownloadResponse'
+        '400':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '401':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '403':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '404':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '500':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '502':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+components:
+  schemas:
+    ListDownloadsResponse:
+      type: object
+      properties:
+        bucket:
+          type: string
+        prefix:
+          type: string
+        objects:
+          type: array
+          items:
+            $ref: '#/components/schemas/DownloadObject'
+        expires_in:
+          type: integer
+        next_cursor:
+          type: string
+          nullable: true
+      required:
+      - bucket
+      - prefix
+      - objects
+      - expires_in
+      - next_cursor
+    DownloadResponse:
+      type: object
+      properties:
+        bucket:
+          type: string
+        path:
+          type: string
+        download_url:
+          type: string
+        expires_in:
+          type: integer
+      required:
+      - bucket
+      - path
+      - download_url
+      - expires_in
+    DownloadObject:
+      type: object
+      properties:
+        key:
+          type: string
+        size:
+          type: integer
+        last_modified:
+          type: string
+        download_url:
+          type: string
+      required:
+      - key
+      - download_url
+    CreateDownloadRequest:
+      type: object
+      properties:
+        filename:
+          type: string
+          minLength: 1
+        download:
+          type: boolean
+          default: false
+      required:
+      - filename

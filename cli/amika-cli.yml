@@ -1,0 +1,38 @@
+generated: '2026-07-17'
+method: searched
+source: https://docs.amika.dev/reference/cli
+docs: https://docs.amika.dev/reference/cli
+install:
+  docs: https://docs.amika.dev/install
+  source: https://github.com/gofixpoint/amika
+binaries:
+- name: amika
+  description: >-
+    Primary CLI for managing sandboxes, repositories, agents, secrets, and
+    services against the hosted Amika API (or a local mode). Written in Go.
+  reference: https://docs.amika.dev/reference/cli
+- name: amika-server
+  description: >-
+    Self-hostable server binary that exposes sandbox operations over HTTP with
+    OpenAPI docs at /docs.
+  reference: https://docs.amika.dev/reference/amika-server-cli-reference
+- name: amikalog
+  description: >-
+    Captures every Claude Code and Codex session as append-only event files on
+    disk.
+  reference: https://docs.amika.dev/guides/capture-agent-sessions
+command_groups:
+- name: auth
+  description: Login (device flow), logout, API key management, credential precedence.
+- name: sandbox
+  description: Create, list, start, stop, delete sandboxes; SSH/connect; drive agents.
+- name: snapshot
+  description: Capture a configured sandbox as a reusable base image.
+- name: secret
+  description: Store/list/reveal secrets and agent credentials in the Amika vault.
+- name: repo
+  description: Register repositories and manage .amika/config.toml defaults.
+key_flows:
+- Programmatic usage: script the CLI to spin up a sandbox, drive an agent
+    non-interactively, and ship a PR (https://docs.amika.dev/guides/programmatic-usage).
+- Capture agent sessions with amikalog for auditability.

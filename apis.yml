@@ -1,7 +1,29 @@
 aid: amika
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/amika.png
 name: Amika
-description: Amika is a company surfaced as a portfolio company of y-combinator and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Amika is a Y Combinator-backed infrastructure company for running AI coding
+  agents in isolated cloud sandboxes. Teams spawn agents from Slack, Linear,
+  GitHub, a CLI, a TypeScript SDK, or the hosted HTTP API to understand a
+  codebase, run in a root-access VM, execute programmable checks (tests,
+  linters, type checkers), and open validated pull requests autonomously. The
+  platform exposes a REST API (v0beta1) for managing repositories, sandboxes,
+  snapshots, agent sessions, secrets, services, storage, and Slack integration,
+  with API-key and OAuth device-flow authentication. Core primitives are shipped
+  open source under the gofixpoint GitHub organization, including the amika CLI,
+  the amikalog session-capture tool, and the @amika/sdk TypeScript client.
 url: https://raw.githubusercontent.com/api-evangelist/amika/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -14,9 +36,318 @@ created: '2026-07-17'
 modified: '2026-07-17'
 tags:
 - Company
-apis: []
+- AI Agents
+- Coding Agents
+- Developer Tools
+- Sandboxes
+- Infrastructure
+- CI/CD
+- Automation
+- Software Factory
+- API
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: amika:amika-api-keys-api
+  name: Amika API keys API
+  description: The API keys API from Amika — 2 operation(s) for api keys.
+  humanURL: https://docs.amika.dev/reference/api-reference
+  baseURL: https://app.amika.dev/api/v0beta1
+  tags:
+  - API keys
+  properties:
+  - type: OpenAPI
+    url: openapi/amika-api-keys-api-openapi.yml
+  - type: Authentication
+    url: authentication/amika-authentication.yml
+  - type: Conventions
+    url: conventions/amika-conventions.yml
+  - type: ErrorCatalog
+    url: errors/amika-problem-types.yml
+  - type: DataModel
+    url: data-model/amika-data-model.yml
+  - type: Conformance
+    url: conformance/amika-conformance.yml
+- aid: amika:amika-docker-registries-api
+  name: Amika Docker registries API
+  description: The Docker registries API from Amika — 2 operation(s) for docker registries.
+  humanURL: https://docs.amika.dev/reference/api-reference
+  baseURL: https://app.amika.dev/api/v0beta1
+  tags:
+  - Docker registries
+  properties:
+  - type: OpenAPI
+    url: openapi/amika-docker-registries-api-openapi.yml
+  - type: Authentication
+    url: authentication/amika-authentication.yml
+  - type: Conventions
+    url: conventions/amika-conventions.yml
+  - type: ErrorCatalog
+    url: errors/amika-problem-types.yml
+  - type: DataModel
+    url: data-model/amika-data-model.yml
+  - type: Conformance
+    url: conformance/amika-conformance.yml
+- aid: amika:amika-downloads-api
+  name: Amika Downloads API
+  description: The Downloads API from Amika — 1 operation(s) for downloads.
+  humanURL: https://docs.amika.dev/reference/api-reference
+  baseURL: https://app.amika.dev/api/v0beta1
+  tags:
+  - Downloads
+  properties:
+  - type: OpenAPI
+    url: openapi/amika-downloads-api-openapi.yml
+  - type: Authentication
+    url: authentication/amika-authentication.yml
+  - type: Conventions
+    url: conventions/amika-conventions.yml
+  - type: ErrorCatalog
+    url: errors/amika-problem-types.yml
+  - type: DataModel
+    url: data-model/amika-data-model.yml
+  - type: Conformance
+    url: conformance/amika-conformance.yml
+- aid: amika:amika-git-user-settings-api
+  name: Amika Git user settings API
+  description: The Git user settings API from Amika — 1 operation(s) for git user settings.
+  humanURL: https://docs.amika.dev/reference/api-reference
+  baseURL: https://app.amika.dev/api/v0beta1
+  tags:
+  - Git user settings
+  properties:
+  - type: OpenAPI
+    url: openapi/amika-git-user-settings-api-openapi.yml
+  - type: Authentication
+    url: authentication/amika-authentication.yml
+  - type: Conventions
+    url: conventions/amika-conventions.yml
+  - type: ErrorCatalog
+    url: errors/amika-problem-types.yml
+  - type: DataModel
+    url: data-model/amika-data-model.yml
+  - type: Conformance
+    url: conformance/amika-conformance.yml
+- aid: amika:amika-integrations-api
+  name: Amika Integrations API
+  description: The Integrations API from Amika — 2 operation(s) for integrations.
+  humanURL: https://docs.amika.dev/reference/api-reference
+  baseURL: https://app.amika.dev/api/v0beta1
+  tags:
+  - Integrations
+  properties:
+  - type: OpenAPI
+    url: openapi/amika-integrations-api-openapi.yml
+  - type: Authentication
+    url: authentication/amika-authentication.yml
+  - type: Conventions
+    url: conventions/amika-conventions.yml
+  - type: ErrorCatalog
+    url: errors/amika-problem-types.yml
+  - type: DataModel
+    url: data-model/amika-data-model.yml
+  - type: Conformance
+    url: conformance/amika-conformance.yml
+- aid: amika:amika-repositories-api
+  name: Amika Repositories API
+  description: The Repositories API from Amika — 5 operation(s) for repositories.
+  humanURL: https://docs.amika.dev/reference/api-reference
+  baseURL: https://app.amika.dev/api/v0beta1
+  tags:
+  - Repositories
+  properties:
+  - type: OpenAPI
+    url: openapi/amika-repositories-api-openapi.yml
+  - type: Authentication
+    url: authentication/amika-authentication.yml
+  - type: Conventions
+    url: conventions/amika-conventions.yml
+  - type: ErrorCatalog
+    url: errors/amika-problem-types.yml
+  - type: DataModel
+    url: data-model/amika-data-model.yml
+  - type: Conformance
+    url: conformance/amika-conformance.yml
+- aid: amika:amika-sandboxes-api
+  name: Amika Sandboxes API
+  description: The Sandboxes API from Amika — 16 operation(s) for sandboxes.
+  humanURL: https://docs.amika.dev/reference/api-reference
+  baseURL: https://app.amika.dev/api/v0beta1
+  tags:
+  - Sandboxes
+  properties:
+  - type: OpenAPI
+    url: openapi/amika-sandboxes-api-openapi.yml
+  - type: Authentication
+    url: authentication/amika-authentication.yml
+  - type: Conventions
+    url: conventions/amika-conventions.yml
+  - type: ErrorCatalog
+    url: errors/amika-problem-types.yml
+  - type: DataModel
+    url: data-model/amika-data-model.yml
+  - type: Conformance
+    url: conformance/amika-conformance.yml
+- aid: amika:amika-sandboxsnapshots-api
+  name: Amika SandboxSnapshots API
+  description: The SandboxSnapshots API from Amika — 3 operation(s) for sandboxsnapshots.
+  humanURL: https://docs.amika.dev/reference/api-reference
+  baseURL: https://app.amika.dev/api/v0beta1
+  tags:
+  - SandboxSnapshots
+  properties:
+  - type: OpenAPI
+    url: openapi/amika-sandboxsnapshots-api-openapi.yml
+  - type: Authentication
+    url: authentication/amika-authentication.yml
+  - type: Conventions
+    url: conventions/amika-conventions.yml
+  - type: ErrorCatalog
+    url: errors/amika-problem-types.yml
+  - type: DataModel
+    url: data-model/amika-data-model.yml
+  - type: Conformance
+    url: conformance/amika-conformance.yml
+- aid: amika:amika-secrets-api
+  name: Amika Secrets API
+  description: The Secrets API from Amika — 11 operation(s) for secrets.
+  humanURL: https://docs.amika.dev/reference/api-reference
+  baseURL: https://app.amika.dev/api/v0beta1
+  tags:
+  - Secrets
+  properties:
+  - type: OpenAPI
+    url: openapi/amika-secrets-api-openapi.yml
+  - type: Authentication
+    url: authentication/amika-authentication.yml
+  - type: Conventions
+    url: conventions/amika-conventions.yml
+  - type: ErrorCatalog
+    url: errors/amika-problem-types.yml
+  - type: DataModel
+    url: data-model/amika-data-model.yml
+  - type: Conformance
+    url: conformance/amika-conformance.yml
+- aid: amika:amika-services-api
+  name: Amika Services API
+  description: The Services API from Amika — 2 operation(s) for services.
+  humanURL: https://docs.amika.dev/reference/api-reference
+  baseURL: https://app.amika.dev/api/v0beta1
+  tags:
+  - Services
+  properties:
+  - type: OpenAPI
+    url: openapi/amika-services-api-openapi.yml
+  - type: Authentication
+    url: authentication/amika-authentication.yml
+  - type: Conventions
+    url: conventions/amika-conventions.yml
+  - type: ErrorCatalog
+    url: errors/amika-problem-types.yml
+  - type: DataModel
+    url: data-model/amika-data-model.yml
+  - type: Conformance
+    url: conformance/amika-conformance.yml
+- aid: amika:amika-slack-api
+  name: Amika Slack API
+  description: The Slack API from Amika — 2 operation(s) for slack.
+  humanURL: https://docs.amika.dev/reference/api-reference
+  baseURL: https://app.amika.dev/api/v0beta1
+  tags:
+  - Slack
+  properties:
+  - type: OpenAPI
+    url: openapi/amika-slack-api-openapi.yml
+  - type: Authentication
+    url: authentication/amika-authentication.yml
+  - type: Conventions
+    url: conventions/amika-conventions.yml
+  - type: ErrorCatalog
+    url: errors/amika-problem-types.yml
+  - type: DataModel
+    url: data-model/amika-data-model.yml
+  - type: Conformance
+    url: conformance/amika-conformance.yml
+- aid: amika:amika-uploads-api
+  name: Amika Uploads API
+  description: The Uploads API from Amika — 2 operation(s) for uploads.
+  humanURL: https://docs.amika.dev/reference/api-reference
+  baseURL: https://app.amika.dev/api/v0beta1
+  tags:
+  - Uploads
+  properties:
+  - type: OpenAPI
+    url: openapi/amika-uploads-api-openapi.yml
+  - type: Authentication
+    url: authentication/amika-authentication.yml
+  - type: Conventions
+    url: conventions/amika-conventions.yml
+  - type: ErrorCatalog
+    url: errors/amika-problem-types.yml
+  - type: DataModel
+    url: data-model/amika-data-model.yml
+  - type: Conformance
+    url: conformance/amika-conformance.yml
+common:
+- type: DeveloperPortal
+  url: https://docs.amika.dev
+- type: Documentation
+  url: https://docs.amika.dev
+- type: APIReference
+  url: https://docs.amika.dev/reference/api-reference
+- type: GettingStarted
+  url: https://docs.amika.dev/quickstart
+- type: Authentication
+  url: authentication/amika-authentication.yml
+- type: SDKs
+  url: packages/amika-packages.yml
+- type: Packages
+  url: packages/amika-packages.yml
+- type: CLI
+  url: cli/amika-cli.yml
+- type: MCPServer
+  url: mcp/amika-mcp.yml
+- type: LLMsTxt
+  url: llms/amika-llms.txt
+- type: Lifecycle
+  url: lifecycle/amika-lifecycle.yml
+- type: Roadmap
+  url: https://docs.amika.dev/architecture/roadmap
+- type: Conventions
+  url: conventions/amika-conventions.yml
+- type: ErrorCatalog
+  url: errors/amika-problem-types.yml
+- type: DataModel
+  url: data-model/amika-data-model.yml
+- type: Conformance
+  url: conformance/amika-conformance.yml
+- type: DomainSecurity
+  url: security/amika-domain-security.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: GitHubOrganization
+  url: https://github.com/gofixpoint
+- type: SourceCode
+  url: https://github.com/gofixpoint/amika
+- type: Pricing
+  url: https://www.amika.dev/pricing
+- type: SignUp
+  url: https://app.amika.dev/signup
+- type: Login
+  url: https://app.amika.dev/login
+- type: TermsOfService
+  url: https://www.amika.dev/terms
+- type: PrivacyPolicy
+  url: https://www.amika.dev/privacy
+- type: Support
+  url: https://discord.gg/xDXk4KjGWg
+- type: Website
+  url: https://www.amika.dev
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

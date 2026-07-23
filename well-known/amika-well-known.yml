@@ -1,0 +1,40 @@
+generated: '2026-07-17'
+method: probed
+host: https://app.amika.dev
+source: live probes 2026-07-17
+notes: >-
+  All /.well-known/ paths on app.amika.dev return HTTP 200 but serve the
+  Next.js single-page-app HTML shell (soft-404), not a real machine-readable
+  document. www.amika.dev and docs.amika.dev return hard 404s. No genuine
+  well-known discovery documents are published, so no WellKnown/SecurityTxt
+  canonical pointer is emitted.
+documents:
+- path: /.well-known/security.txt
+  host: app.amika.dev
+  status: 200
+  real_document: false
+  content_type: text/html
+- path: /.well-known/openid-configuration
+  host: app.amika.dev
+  status: 200
+  real_document: false
+  content_type: text/html
+- path: /.well-known/oauth-authorization-server
+  host: app.amika.dev
+  status: 200
+  real_document: false
+  content_type: text/html
+- path: /.well-known/api-catalog
+  host: app.amika.dev
+  status: 200
+  real_document: false
+  content_type: text/html
+- path: /.well-known/ai-plugin.json
+  host: app.amika.dev
+  status: 200
+  real_document: false
+  content_type: text/html
+- path: /.well-known/security.txt
+  host: www.amika.dev
+  status: 404
+  real_document: false

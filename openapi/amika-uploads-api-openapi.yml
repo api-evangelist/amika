@@ -1,0 +1,425 @@
+openapi: 3.1.0
+info:
+  title: Amika API — v0beta1 API keys Uploads API
+  version: 0beta1
+tags:
+- name: Uploads
+paths:
+  /storage/uploads:
+    post:
+      tags:
+      - Uploads
+      summary: Create a one-time signed upload URL for the org's storage bucket
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUploadRequest'
+      responses:
+        '201':
+          description: Signed upload URL. PUT the file body to `upload_url` using the returned `token`; valid for `expires_in` seconds, single use.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadResponse'
+        '400':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '401':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '403':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '500':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '502':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+  /storage/uploads/batch:
+    post:
+      tags:
+      - Uploads
+      summary: Create one-time signed upload URLs for several objects in one call
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUploadBatchRequest'
+      responses:
+        '201':
+          description: One signed upload URL per requested file, in `objects`. PUT each file body to its `upload_url` using its `token`; all are valid for `expires_in` seconds, single use. The whole request fails if any single file cannot be signed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadBatchResponse'
+        '400':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '401':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '403':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '500':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '502':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+components:
+  schemas:
+    UploadBatchResponse:
+      type: object
+      properties:
+        bucket:
+          type: string
+        objects:
+          type: array
+          items:
+            type: object
+            properties:
+              path:
+                type: string
+              upload_url:
+                type: string
+              token:
+                type: string
+            required:
+            - path
+            - upload_url
+            - token
+        expires_in:
+          type: integer
+      required:
+      - bucket
+      - objects
+      - expires_in
+    CreateUploadBatchRequest:
+      type: object
+      properties:
+        files:
+          type: array
+          items:
+            type: object
+            properties:
+              filename:
+                type: string
+                minLength: 1
+              upsert:
+                type: boolean
+                default: false
+            required:
+            - filename
+          minItems: 1
+          maxItems: 100
+      required:
+      - files
+    UploadResponse:
+      type: object
+      properties:
+        bucket:
+          type: string
+        path:
+          type: string
+        upload_url:
+          type: string
+        token:
+          type: string
+        expires_in:
+          type: integer
+      required:
+      - bucket
+      - path
+      - upload_url
+      - token
+      - expires_in
+    CreateUploadRequest:
+      type: object
+      properties:
+        filename:
+          type: string
+          minLength: 1
+        upsert:
+          type: boolean
+          default: false
+      required:
+      - filename

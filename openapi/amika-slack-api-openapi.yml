@@ -1,0 +1,685 @@
+openapi: 3.1.0
+info:
+  title: Amika API — v0beta1 API keys Slack API
+  version: 0beta1
+tags:
+- name: Slack
+paths:
+  /slack/settings:
+    get:
+      tags:
+      - Slack
+      summary: Read the org's Slack settings
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          description: Slack settings.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SlackOrgSettings'
+        '401':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '403':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '404':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+    put:
+      tags:
+      - Slack
+      summary: Upsert the org's Slack settings
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SlackOrgSettingsUpsert'
+      responses:
+        '200':
+          description: Updated settings.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SlackOrgSettings'
+        '400':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '401':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '403':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+  /slack/channel-settings:
+    get:
+      tags:
+      - Slack
+      summary: List per-channel Slack settings and recently seen channels
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          description: Channel settings and the list of channels the bot has been mentioned in.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SlackChannelSettingsList'
+        '401':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '403':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+    put:
+      tags:
+      - Slack
+      summary: Upsert per-channel Slack settings
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SlackChannelSettingsUpsert'
+      responses:
+        '200':
+          description: Updated channel settings.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SlackChannelSettings'
+        '400':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '401':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '403':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+    delete:
+      tags:
+      - Slack
+      summary: Delete per-channel Slack settings
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SlackChannelSettingsDelete'
+      responses:
+        '204':
+          description: Deleted (or no row existed).
+        '400':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '401':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '403':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+components:
+  schemas:
+    SlackOrgSettings:
+      type: object
+      properties:
+        org_id:
+          type: string
+        repository_id:
+          type: string
+          nullable: true
+        agent_name:
+          type: string
+          nullable: true
+          enum:
+          - claude
+          - codex
+          - null
+        system_prompt:
+          type: string
+          nullable: true
+        created_at:
+          anyOf:
+          - type: string
+          - type: string
+            format: date-time
+        updated_at:
+          anyOf:
+          - type: string
+          - type: string
+            format: date-time
+      required:
+      - org_id
+      - repository_id
+      - agent_name
+      - system_prompt
+      - created_at
+      - updated_at
+    SlackChannelSettingsUpsert:
+      type: object
+      properties:
+        slack_team_id:
+          type: string
+          minLength: 1
+        slack_channel_id:
+          type: string
+          minLength: 1
+        repository_id:
+          type: string
+          nullable: true
+          minLength: 1
+        agent_name:
+          type: string
+          nullable: true
+          enum:
+          - claude
+          - codex
+          - null
+        system_prompt:
+          type: string
+          nullable: true
+      required:
+      - slack_team_id
+      - slack_channel_id
+    SlackChannelSettingsList:
+      type: object
+      properties:
+        settings:
+          type: array
+          items:
+            $ref: '#/components/schemas/SlackChannelSettings'
+        seen_channels:
+          type: array
+          items:
+            $ref: '#/components/schemas/SlackSeenChannel'
+      required:
+      - settings
+      - seen_channels
+    SlackOrgSettingsUpsert:
+      type: object
+      properties:
+        repository_id:
+          type: string
+          nullable: true
+          minLength: 1
+        agent_name:
+          type: string
+          nullable: true
+          enum:
+          - claude
+          - codex
+          - null
+        system_prompt:
+          type: string
+          nullable: true
+      required:
+      - repository_id
+      - agent_name
+      - system_prompt
+    SlackChannelSettings:
+      type: object
+      properties:
+        org_id:
+          type: string
+        slack_team_id:
+          type: string
+        slack_channel_id:
+          type: string
+        repository_id:
+          type: string
+          nullable: true
+        agent_name:
+          type: string
+          nullable: true
+          enum:
+          - claude
+          - codex
+          - null
+        system_prompt:
+          type: string
+          nullable: true
+        created_at:
+          anyOf:
+          - type: string
+          - type: string
+            format: date-time
+        updated_at:
+          anyOf:
+          - type: string
+          - type: string
+            format: date-time
+      required:
+      - org_id
+      - slack_team_id
+      - slack_channel_id
+      - repository_id
+      - agent_name
+      - system_prompt
+      - created_at
+      - updated_at
+    SlackSeenChannel:
+      type: object
+      properties:
+        slack_team_id:
+          type: string
+        slack_team_name:
+          type: string
+          nullable: true
+        slack_channel_id:
+          type: string
+        slack_channel_name:
+          type: string
+          nullable: true
+        last_seen_at:
+          anyOf:
+          - type: string
+          - type: string
+            format: date-time
+      required:
+      - slack_team_id
+      - slack_team_name
+      - slack_channel_id
+      - slack_channel_name
+      - last_seen_at
+    SlackChannelSettingsDelete:
+      type: object
+      properties:
+        slack_team_id:
+          type: string
+          minLength: 1
+        slack_channel_id:
+          type: string
+          minLength: 1
+      required:
+      - slack_team_id
+      - slack_channel_id

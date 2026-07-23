@@ -1,0 +1,25 @@
+generated: '2026-07-17'
+method: generated
+source: openapi/amika-openapi.json
+notes: >-
+  Consumer Agent Skills generated from the v0beta1 OpenAPI. The spec has no
+  operationIds, so steps are grounded in verified HTTP method + path. Amika's own
+  published skills (gofixpoint/agent-plugins, .agents/skills/*) are internal
+  dev-release workflows, not API-consumer skills.
+skills:
+- file: amika-spin-up-and-run-agent.md
+  name: Spin up a sandbox and run a coding agent
+  api: openapi/amika-openapi.json
+  operations:
+  - "POST /sandboxes"
+  - "POST /sandboxes/{id}/start"
+  - "POST /sandboxes/{id}/agent-send"
+  - "GET /sandboxes/{id}/sessions/latest"
+  - "DELETE /sandboxes/{id}"
+- file: amika-snapshot-for-fast-boot.md
+  name: Capture a sandbox snapshot for fast boots
+  api: openapi/amika-openapi.json
+  operations:
+  - "POST /sandboxes"
+  - "POST /sandbox-snapshots"
+  - "GET /sandbox-snapshots/{ref}"

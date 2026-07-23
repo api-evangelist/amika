@@ -1,0 +1,32 @@
+generated: '2026-07-17'
+method: searched
+source: https://registry.npmjs.org/@amika/sdk
+packages:
+- language: javascript
+  registry: npm
+  name: "@amika/sdk"
+  url: https://www.npmjs.com/package/@amika/sdk
+  install: npm install @amika/sdk
+  latest: 0.10.0
+  license: MIT
+  official: true
+  description: >-
+    Official TypeScript SDK (AmikaClient) with typed bindings to the hosted
+    Amika REST API. Maintained by Amika (dylan@amika.dev, jakub@fixpoint.co).
+    Node >= 18, ESM.
+  docs: https://docs.amika.dev/sdks/typescript/quickstart
+- language: go
+  registry: github
+  name: github.com/gofixpoint/amika
+  url: https://github.com/gofixpoint/amika
+  install: go install github.com/gofixpoint/amika/...@latest
+  official: true
+  description: >-
+    Open-source Go source for the amika CLI and internal API client
+    (go/internal/apiclient). The CLI binary is the primary Go distribution;
+    catalogued in cli/amika-cli.yml.
+notes: >-
+  A Python SDK exists as source in the gofixpoint org (python-sdk,
+  python-openapi-client) but no first-party package was found published to PyPI
+  under the amika name (pypi.org/pypi/amika -> 404), so it is not listed as an
+  official released package.

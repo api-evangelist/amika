@@ -1,0 +1,51 @@
+# Amika
+
+## Docs
+
+- [Architecture overview](https://docs.amika.dev/architecture/overview.md): Core Amika concepts and system layout.
+- [Architecture roadmap](https://docs.amika.dev/architecture/roadmap.md): Current capabilities and planned system evolution.
+- [Capture agent sessions](https://docs.amika.dev/guides/capture-agent-sessions.md): Capture every Claude Code and Codex session as append-only event files on disk with amikalog.
+- [Checks](https://docs.amika.dev/guides/checks.md): Run sandboxed programs that analyze or modify your repo on every PR, locally, or in CI.
+- [Code annotations](https://docs.amika.dev/guides/code-annotations.md): Annotate your code to preserve invariants, enforce rules, and inject relevant context when an agent reads or modifies specific files or code symbols.
+- [Create a sandbox](https://docs.amika.dev/guides/create-a-sandbox.md): Spin up a sandbox pre-loaded with your repo and agent credentials.
+- [Create a snapshot](https://docs.amika.dev/guides/create-a-snapshot.md): Capture a configured sandbox as a reusable base image so new sandboxes boot fast.
+- [Inject credentials](https://docs.amika.dev/guides/inject-credentials.md): Wire stored secrets and agent credentials into a sandbox at create time.
+- [Manage secrets](https://docs.amika.dev/guides/manage-secrets.md): Store API keys, OAuth credentials, and agent secrets in the Amika vault.
+- [Manage sessions](https://docs.amika.dev/guides/manage-sessions.md): Create, list, fetch, and update agent sessions in a sandbox.
+- [MCP integrations](https://docs.amika.dev/guides/mcp-integrations.md): Give sandboxed agents pre-authenticated access to external tools via MCP servers.
+- [Guides overview](https://docs.amika.dev/guides/overview.md): Task-oriented walkthroughs for the CLI and the TypeScript SDK.
+- [Programmatic usage](https://docs.amika.dev/guides/programmatic-usage.md): Script the Amika CLI to spin up a sandbox, drive an agent non-interactively, and ship the result.
+- [Sandbox lifecycle](https://docs.amika.dev/guides/sandbox-lifecycle.md): List, start, stop, and delete sandboxes.
+- [Send a message to an agent](https://docs.amika.dev/guides/send-a-message-to-an-agent.md): Run Claude, Codex, or another agent inside a sandbox and read its response.
+- [Set up repo config with an agent](https://docs.amika.dev/guides/setup-repo-config-with-agent.md): Use a coding agent to analyze your repository and generate an Amika sandbox configuration automatically.
+- [SSH and connect](https://docs.amika.dev/guides/ssh-and-connect.md): Open a shell on a sandbox over SSH, or open it in your editor.
+- [Introduction](https://docs.amika.dev/index.md): Infra to build your software factory.
+- [Install](https://docs.amika.dev/install.md): Install the Amika CLI.
+- [Quickstart](https://docs.amika.dev/quickstart.md): Install the CLI and create your first sandbox.
+- [amika-server CLI reference](https://docs.amika.dev/reference/amika-server-cli-reference.md): Commands, flags, and examples for the amika-server binary.
+- [API reference](https://docs.amika.dev/reference/api-reference.md): Interactive docs, OpenAPI spec, and LLM context for the hosted Amika API.
+- [Authentication](https://docs.amika.dev/reference/auth.md): CLI login flows, credential precedence, and session storage.
+- [CLI reference](https://docs.amika.dev/reference/cli.md): Commands, flags, and examples for the Amika CLI.
+- [config.toml](https://docs.amika.dev/reference/config-toml.md): Exhaustive reference for .amika/config.toml fields.
+- [Presets](https://docs.amika.dev/reference/presets.md): Choose and manage Amika preset images.
+- [Repository configuration](https://docs.amika.dev/reference/repository-configuration.md): Configure sandbox defaults for a repository with .amika/config.toml.
+- [Sandbox configuration](https://docs.amika.dev/reference/sandbox-configuration.md): Configure sandboxes with CLI flags, credential mounting, and runtime settings.
+- [Secrets](https://docs.amika.dev/reference/secrets.md): Scope model, generic vs provider secrets, and the secret command surface.
+- [Services](https://docs.amika.dev/reference/services.md): Declare named services with port mappings and URL schemes for your sandboxes.
+- [Storage paths](https://docs.amika.dev/reference/storage.md): Where Amika stores state, caches, and file-mount copies.
+- [SDKs overview](https://docs.amika.dev/sdks/overview.md): Official client libraries for the Amika API.
+- [AmikaClient](https://docs.amika.dev/sdks/typescript/client.md): Method-by-method reference for the TypeScript SDK client.
+- [Errors](https://docs.amika.dev/sdks/typescript/errors.md): Error classes and agent-auth detection in the TypeScript SDK.
+- [TypeScript quickstart](https://docs.amika.dev/sdks/typescript/quickstart.md): Install @amika/sdk and create your first sandbox from TypeScript.
+- [Token sources](https://docs.amika.dev/sdks/typescript/token-sources.md): Supply static or dynamically-refreshed API tokens to the SDK.
+- [Types](https://docs.amika.dev/sdks/typescript/types.md): Request and response interfaces for the TypeScript SDK.
+
+## OpenAPI Specs
+
+- [openapi](https://docs.amika.dev/api-reference/openapi.json)
+
+## Optional
+
+- [Website](https://www.amika.dev)
+- [Pricing](https://www.amika.dev/pricing)
+- [GitHub](https://github.com/gofixpoint/amika)

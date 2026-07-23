@@ -1,0 +1,276 @@
+openapi: 3.1.0
+info:
+  title: Amika API — v0beta1 API keys Git user settings API
+  version: 0beta1
+tags:
+- name: Git user settings
+paths:
+  /git-user-settings:
+    get:
+      tags:
+      - Git user settings
+      summary: Read the caller's git user settings
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          description: Configured git user settings, or a suggestion derived from the WorkOS profile when none are saved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GitUserSettingsResponse'
+        '401':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '403':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+    post:
+      tags:
+      - Git user settings
+      summary: Create or update the caller's git user settings
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpsertGitUserSettingsRequest'
+      responses:
+        '201':
+          description: Updated row.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GitUserSettingsRow'
+        '400':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '401':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '403':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+components:
+  schemas:
+    GitUserSettingsRow:
+      type: object
+      properties:
+        id:
+          type: string
+        org_id:
+          type: string
+        user_id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - id
+      - org_id
+      - user_id
+      - name
+      - email
+      - created_at
+      - updated_at
+    UpsertGitUserSettingsRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+        email:
+          type: string
+          minLength: 1
+      required:
+      - name
+      - email
+    GitUserSettingsResponse:
+      anyOf:
+      - type: object
+        properties:
+          configured:
+            type: boolean
+            enum:
+            - true
+          name:
+            type: string
+          email:
+            type: string
+          suggestion:
+            type: object
+            properties:
+              name:
+                type: string
+              email:
+                type: string
+            required:
+            - name
+            - email
+        required:
+        - configured
+        - name
+        - email
+        - suggestion
+      - type: object
+        properties:
+          configured:
+            type: boolean
+            enum:
+            - false
+          suggestion:
+            type: object
+            properties:
+              name:
+                type: string
+              email:
+                type: string
+            required:
+            - name
+            - email
+        required:
+        - configured
+        - suggestion
