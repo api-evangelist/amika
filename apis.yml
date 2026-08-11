@@ -292,6 +292,17 @@ apis:
   - type: Conformance
     url: conformance/amika-conformance.yml
 common:
+- type: Overlay
+  url: overlays/amika-openapi-overlay.yaml
+- type: IssueTracker
+  url: https://github.com/gofixpoint/amika/issues
+- type: Releases
+  url: https://github.com/gofixpoint/amika/releases
+- type: ContributionGuide
+  url: https://github.com/gofixpoint/amika/blob/main/CONTRIBUTING.md
+- type: License
+  name: Apache-2.0
+  url: https://github.com/gofixpoint/amika/blob/main/LICENSE
 - type: DeveloperPortal
   url: https://docs.amika.dev
 - type: Documentation
