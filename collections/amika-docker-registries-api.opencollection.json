@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amika API — v0beta1 API keys Docker registries API",
+    "version": "0beta1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Docker registries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List the org's docker registries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/docker-registries"
+          },
+          "docs": "List the org's docker registries"
+        },
+        {
+          "info": {
+            "name": "Register a docker registry",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/docker-registries",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Register a docker registry"
+        },
+        {
+          "info": {
+            "name": "Delete a docker registry",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/docker-registries/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a docker registry"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

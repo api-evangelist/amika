@@ -2,65 +2,68 @@ generated: '2026-07-17'
 method: derived
 status: candidate
 source: openapi/amika-openapi.json
-notes: >-
-  No official hosted/remote Amika MCP server was found (Amika's "MCP
-  integrations" feature lets sandboxed agents CONSUME external MCP servers; it
-  does not publish an Amika MCP server). The tool list below is a candidate
-  derived one-per-resource from the v0beta1 OpenAPI operations, as a starting
-  point for a wrapper server. The spec has no operationIds, so tools reference
-  the HTTP method + path.
+notes: No official hosted/remote Amika MCP server was found (Amika's "MCP integrations" feature lets sandboxed
+  agents CONSUME external MCP servers; it does not publish an Amika MCP server). The tool list below is
+  a candidate derived one-per-resource from the v0beta1 OpenAPI operations, as a starting point for a
+  wrapper server. The spec has no operationIds, so tools reference the HTTP method + path.
 server:
   name: amika
   transport: http
 tools:
 - name: list_sandboxes
   description: List sandboxes for the caller's org.
-  source_operation: "GET /sandboxes"
+  source_operation: GET /sandboxes
 - name: create_sandbox
   description: Create a sandbox pre-loaded with a repo and agent credentials.
-  source_operation: "POST /sandboxes"
+  source_operation: POST /sandboxes
 - name: get_sandbox
   description: Fetch a sandbox by id.
-  source_operation: "GET /sandboxes/{id}"
+  source_operation: GET /sandboxes/{id}
 - name: start_sandbox
   description: Start a stopped sandbox.
-  source_operation: "POST /sandboxes/{id}/start"
+  source_operation: POST /sandboxes/{id}/start
 - name: stop_sandbox
   description: Stop a running sandbox.
-  source_operation: "POST /sandboxes/{id}/stop"
+  source_operation: POST /sandboxes/{id}/stop
 - name: delete_sandbox
   description: Delete a sandbox.
-  source_operation: "DELETE /sandboxes/{id}"
+  source_operation: DELETE /sandboxes/{id}
 - name: send_to_agent
   description: Run Claude/Codex/another agent inside a sandbox and read its response.
-  source_operation: "POST /sandboxes/{id}/agent-send"
+  source_operation: POST /sandboxes/{id}/agent-send
 - name: create_agent_session
   description: Create an agent session in a sandbox.
-  source_operation: "POST /sandboxes/{id}/sessions"
+  source_operation: POST /sandboxes/{id}/sessions
 - name: list_agent_sessions
   description: List agent sessions for a sandbox.
-  source_operation: "GET /sandboxes/{id}/sessions"
+  source_operation: GET /sandboxes/{id}/sessions
 - name: create_snapshot
   description: Capture a configured sandbox as a reusable base image.
-  source_operation: "POST /sandbox-snapshots"
+  source_operation: POST /sandbox-snapshots
 - name: list_snapshots
   description: List sandbox snapshots.
-  source_operation: "GET /sandbox-snapshots"
+  source_operation: GET /sandbox-snapshots
 - name: list_repositories
   description: List registered repositories.
-  source_operation: "GET /repositories"
+  source_operation: GET /repositories
 - name: create_repository
   description: Register a repository.
-  source_operation: "POST /repositories"
+  source_operation: POST /repositories
 - name: list_secrets
   description: List stored secrets.
-  source_operation: "GET /secrets"
+  source_operation: GET /secrets
 - name: create_secret
   description: Store a secret in the Amika vault.
-  source_operation: "POST /secrets"
+  source_operation: POST /secrets
 - name: list_api_keys
   description: List API keys for the org.
-  source_operation: "GET /api-keys"
+  source_operation: GET /api-keys
 - name: create_api_key
   description: Create an API key.
-  source_operation: "POST /api-keys"
+  source_operation: POST /api-keys
+deployment:
+  mode: none
+  verified: derived
+  tools: 17
+  checked: '2026-08-12'
+  source: catalog MCP census

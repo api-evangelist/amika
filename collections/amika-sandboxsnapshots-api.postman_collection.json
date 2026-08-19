@@ -1,0 +1,1770 @@
+{
+  "item": [
+    {
+      "id": "3441544c-2972-4b11-aca8-a5b76de9168b",
+      "name": "SandboxSnapshots",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "01c2c147-a495-4487-9722-604f0edaacc0",
+          "name": "List sandbox-captured snapshots for the caller's org",
+          "request": {
+            "name": "List sandbox-captured snapshots for the caller's org",
+            "description": {},
+            "url": {
+              "path": [
+                "sandbox-snapshots"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "repository_id",
+                  "value": "<string>",
+                  "description": "If set, only return snapshots taken from sandboxes attached to this repository."
+                },
+                {
+                  "disabled": false,
+                  "key": "source_sandbox_id",
+                  "value": "<string>",
+                  "description": "If set, only return snapshots captured from this sandbox."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "49fd8382-6555-42d5-b3ab-569bedb80179",
+              "name": "Snapshots.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandbox-snapshots"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "repository_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_sandbox_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"snapshot\": \"string\",\n      \"provider\": \"string\",\n      \"description\": \"string\",\n      \"source_sandbox_id\": \"string\",\n      \"source_sandbox_name\": \"string\",\n      \"repository_id\": \"string\",\n      \"base_snapshot\": \"string\",\n      \"sandbox_preset\": \"string\",\n      \"sandbox_size\": \"string\",\n      \"state\": \"string\",\n      \"error_message\": \"string\",\n      \"created_at\": \"string\",\n      \"updated_at\": \"string\",\n      \"daytona\": {\n        \"name\": \"string\",\n        \"state\": \"string\",\n        \"imageName\": \"string\",\n        \"cpu\": 235.1030116038577,\n        \"memory\": 6017.9231391456815,\n        \"disk\": 1340.0800157590952,\n        \"createdAt\": \"string\",\n        \"updatedAt\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"snapshot\": \"string\",\n      \"provider\": \"string\",\n      \"description\": \"string\",\n      \"source_sandbox_id\": \"string\",\n      \"source_sandbox_name\": \"string\",\n      \"repository_id\": \"string\",\n      \"base_snapshot\": \"string\",\n      \"sandbox_preset\": \"string\",\n      \"sandbox_size\": \"string\",\n      \"state\": \"string\",\n      \"error_message\": \"string\",\n      \"created_at\": \"string\",\n      \"updated_at\": \"string\",\n      \"daytona\": {\n        \"name\": \"string\",\n        \"state\": \"string\",\n        \"imageName\": \"string\",\n        \"cpu\": 1180.9282353284766,\n        \"memory\": 6076.411679607977,\n        \"disk\": 2000.8062973157903,\n        \"createdAt\": \"string\",\n        \"updatedAt\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "73e07576-a769-4ab6-be5d-7233610331ce",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandbox-snapshots"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "repository_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_sandbox_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a1bdf1f3-429f-4410-b1ae-11bc8e611df5",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandbox-snapshots"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "repository_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_sandbox_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b6e05bf9-a2bd-4197-8311-264c40248aaf",
+          "name": "Start capturing a snapshot from a running sandbox",
+          "request": {
+            "name": "Start capturing a snapshot from a running sandbox",
+            "description": {
+              "content": "Validates the request, records a snapshot in the `capturing` state, and runs the (slow) Daytona capture in the background. Returns 202 immediately; poll the listing for the row to reach `active`/`failed`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sandbox-snapshots"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"sandbox_id\": \"<string>\",\n  \"sandbox_name\": \"<string>\",\n  \"sandbox_ref\": \"<string>\",\n  \"description\": \"<string>\",\n  \"mode\": \"scrub_and_delete\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "37a16336-1ca4-4396-8861-c4f495e90f0b",
+              "name": "Snapshot capture started.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandbox-snapshots"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"sandbox_id\": \"<string>\",\n  \"sandbox_name\": \"<string>\",\n  \"sandbox_ref\": \"<string>\",\n  \"description\": \"<string>\",\n  \"mode\": \"scrub_and_delete\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"snapshot\": \"string\",\n  \"provider\": \"string\",\n  \"description\": \"string\",\n  \"source_sandbox_id\": \"string\",\n  \"source_sandbox_name\": \"string\",\n  \"repository_id\": \"string\",\n  \"base_snapshot\": \"string\",\n  \"sandbox_preset\": \"string\",\n  \"sandbox_size\": \"string\",\n  \"state\": \"string\",\n  \"error_message\": \"string\",\n  \"created_at\": \"string\",\n  \"updated_at\": \"string\",\n  \"daytona\": {\n    \"name\": \"string\",\n    \"state\": \"string\",\n    \"imageName\": \"string\",\n    \"cpu\": 9833.484395937738,\n    \"memory\": 7733.070496918991,\n    \"disk\": 3865.670578640846,\n    \"createdAt\": \"string\",\n    \"updatedAt\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "81a8c399-b434-420c-9c35-fc1bc5810ccc",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandbox-snapshots"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"sandbox_id\": \"<string>\",\n  \"sandbox_name\": \"<string>\",\n  \"sandbox_ref\": \"<string>\",\n  \"description\": \"<string>\",\n  \"mode\": \"scrub_and_delete\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a985b1d5-8d3f-4d37-858a-b1bfbb263d14",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandbox-snapshots"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"sandbox_id\": \"<string>\",\n  \"sandbox_name\": \"<string>\",\n  \"sandbox_ref\": \"<string>\",\n  \"description\": \"<string>\",\n  \"mode\": \"scrub_and_delete\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1e4e305c-9dae-4761-9224-862ba710df6b",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandbox-snapshots"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"sandbox_id\": \"<string>\",\n  \"sandbox_name\": \"<string>\",\n  \"sandbox_ref\": \"<string>\",\n  \"description\": \"<string>\",\n  \"mode\": \"scrub_and_delete\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff9d91d3-c816-4b6e-b592-90c4b0d5c631",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandbox-snapshots"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"sandbox_id\": \"<string>\",\n  \"sandbox_name\": \"<string>\",\n  \"sandbox_ref\": \"<string>\",\n  \"description\": \"<string>\",\n  \"mode\": \"scrub_and_delete\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3145e4ba-051f-4ba2-8986-0bdf80810393",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandbox-snapshots"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"sandbox_id\": \"<string>\",\n  \"sandbox_name\": \"<string>\",\n  \"sandbox_ref\": \"<string>\",\n  \"description\": \"<string>\",\n  \"mode\": \"scrub_and_delete\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ecec45a8-50b3-40a7-b188-4abc01ecd3cc",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandbox-snapshots"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"sandbox_id\": \"<string>\",\n  \"sandbox_name\": \"<string>\",\n  \"sandbox_ref\": \"<string>\",\n  \"description\": \"<string>\",\n  \"mode\": \"scrub_and_delete\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e8f53f40-f2d9-4656-9026-97646b1bde49",
+          "name": "Preview which injected secrets a 'snapshot and delete' would remove",
+          "request": {
+            "name": "Preview which injected secrets a 'snapshot and delete' would remove",
+            "description": {},
+            "url": {
+              "path": [
+                "sandbox-snapshots",
+                "scrub-preview"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sandbox",
+                  "value": "<string>",
+                  "description": "The sandbox whose injected secrets would be scrubbed."
+                },
+                {
+                  "disabled": false,
+                  "key": "by",
+                  "value": "<string>",
+                  "description": "How to interpret `sandbox`: name (default), id, or ref/name_or_id (matches either; rejects ambiguity)."
+                },
+                {
+                  "disabled": false,
+                  "key": "sandbox_id",
+                  "value": "<string>",
+                  "description": "Deprecated: use `sandbox` with `by=id` instead."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "571fb197-57f9-405e-bee9-599961100003",
+              "name": "Secrets that would be scrubbed (paths + names only).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandbox-snapshots",
+                    "scrub-preview"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sandbox",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sandbox_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"files\": [\n    \"string\",\n    \"string\"\n  ],\n  \"env_vars\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4825ad95-ce2d-4137-9ee6-447fe0675cc8",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandbox-snapshots",
+                    "scrub-preview"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sandbox",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sandbox_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "26a9801c-72d7-4791-9930-7d4f5a56b6ca",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandbox-snapshots",
+                    "scrub-preview"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sandbox",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sandbox_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "36f91ab8-5615-417b-ad76-1e5a69f982ce",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandbox-snapshots",
+                    "scrub-preview"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sandbox",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sandbox_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a31149ad-153e-41a7-bdfd-41057252c5b9",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandbox-snapshots",
+                    "scrub-preview"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sandbox",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sandbox_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "05ea5716-8d97-49d6-a39a-b3310c4a5195",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandbox-snapshots",
+                    "scrub-preview"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sandbox",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sandbox_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f7009e05-f3d1-457b-8c75-7b9d45967311",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandbox-snapshots",
+                    "scrub-preview"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sandbox",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sandbox_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "75c753ab-4acc-4c2c-9ad6-bb26daa08238",
+          "name": "Read a sandbox snapshot by name (default) or id",
+          "request": {
+            "name": "Read a sandbox snapshot by name (default) or id",
+            "description": {},
+            "url": {
+              "path": [
+                "sandbox-snapshots",
+                ":ref"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "by",
+                  "value": "<string>",
+                  "description": "How to interpret the reference: name (default), id, or ref/name_or_id (matches either; rejects ambiguity)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ref",
+                  "description": "(Required) Snapshot reference: its fully-qualified name (default) or row id. Use the `by` query param to choose."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "0d627860-152b-46b6-9c5a-c550ae18e597",
+              "name": "Snapshot.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandbox-snapshots",
+                    ":ref"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ref",
+                      "description": "(Required) Snapshot reference: its fully-qualified name (default) or row id. Use the `by` query param to choose."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"snapshot\": \"string\",\n  \"provider\": \"string\",\n  \"description\": \"string\",\n  \"source_sandbox_id\": \"string\",\n  \"source_sandbox_name\": \"string\",\n  \"repository_id\": \"string\",\n  \"base_snapshot\": \"string\",\n  \"sandbox_preset\": \"string\",\n  \"sandbox_size\": \"string\",\n  \"state\": \"string\",\n  \"error_message\": \"string\",\n  \"created_at\": \"string\",\n  \"updated_at\": \"string\",\n  \"daytona\": {\n    \"name\": \"string\",\n    \"state\": \"string\",\n    \"imageName\": \"string\",\n    \"cpu\": 9833.484395937738,\n    \"memory\": 7733.070496918991,\n    \"disk\": 3865.670578640846,\n    \"createdAt\": \"string\",\n    \"updatedAt\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b9c48eff-4a69-4dfe-9ece-6ef8d47fab3c",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandbox-snapshots",
+                    ":ref"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ref",
+                      "description": "(Required) Snapshot reference: its fully-qualified name (default) or row id. Use the `by` query param to choose."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d85fd165-2b1f-4f63-ac05-c07dc647c65e",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandbox-snapshots",
+                    ":ref"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ref",
+                      "description": "(Required) Snapshot reference: its fully-qualified name (default) or row id. Use the `by` query param to choose."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a6cd8e6-5bf6-4050-a39e-650d60c7961d",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandbox-snapshots",
+                    ":ref"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ref",
+                      "description": "(Required) Snapshot reference: its fully-qualified name (default) or row id. Use the `by` query param to choose."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b0ad148b-6612-4cf5-a517-2b36dac802ff",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandbox-snapshots",
+                    ":ref"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ref",
+                      "description": "(Required) Snapshot reference: its fully-qualified name (default) or row id. Use the `by` query param to choose."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5ba95812-e64a-429a-9f72-a53bb04655db",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandbox-snapshots",
+                    ":ref"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ref",
+                      "description": "(Required) Snapshot reference: its fully-qualified name (default) or row id. Use the `by` query param to choose."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8df50944-d1e8-4dfe-bb0e-be7f91d13712",
+          "name": "Delete a sandbox snapshot by name (default) or id",
+          "request": {
+            "name": "Delete a sandbox snapshot by name (default) or id",
+            "description": {},
+            "url": {
+              "path": [
+                "sandbox-snapshots",
+                ":ref"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "by",
+                  "value": "<string>",
+                  "description": "How to interpret the reference: name (default), id, or ref/name_or_id (matches either; rejects ambiguity)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ref",
+                  "description": "(Required) Snapshot reference: its fully-qualified name (default) or row id. Use the `by` query param to choose."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "4022911c-ab73-4e0b-a1b2-93b4ed48242a",
+              "name": "Deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandbox-snapshots",
+                    ":ref"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ref",
+                      "description": "(Required) Snapshot reference: its fully-qualified name (default) or row id. Use the `by` query param to choose."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c0ab0bc7-fa43-4caa-a2b7-e7eb108d5a84",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandbox-snapshots",
+                    ":ref"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ref",
+                      "description": "(Required) Snapshot reference: its fully-qualified name (default) or row id. Use the `by` query param to choose."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fe25e7de-34e4-451c-ae7b-0cea22ed8ac6",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandbox-snapshots",
+                    ":ref"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ref",
+                      "description": "(Required) Snapshot reference: its fully-qualified name (default) or row id. Use the `by` query param to choose."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8086d694-d4d8-489f-b84f-67a05925eeee",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandbox-snapshots",
+                    ":ref"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ref",
+                      "description": "(Required) Snapshot reference: its fully-qualified name (default) or row id. Use the `by` query param to choose."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "76de29b7-0335-4804-9211-6d28128e29b4",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandbox-snapshots",
+                    ":ref"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ref",
+                      "description": "(Required) Snapshot reference: its fully-qualified name (default) or row id. Use the `by` query param to choose."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eeaa0046-9b0f-40a4-9992-0bd7f7b0d5b3",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandbox-snapshots",
+                    ":ref"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ref",
+                      "description": "(Required) Snapshot reference: its fully-qualified name (default) or row id. Use the `by` query param to choose."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "79868aee-7362-4a15-9a6b-c59d3d09ad30",
+    "name": "Amika API — v0beta1 API keys SandboxSnapshots API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

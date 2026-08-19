@@ -1,0 +1,1089 @@
+{
+  "item": [
+    {
+      "id": "9aea00dd-ba58-4454-bd11-ce04461c3fc1",
+      "name": "Slack",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c6590d4e-b480-4266-a932-b8b9df48bec9",
+          "name": "Read the org's Slack settings",
+          "request": {
+            "name": "Read the org's Slack settings",
+            "description": {},
+            "url": {
+              "path": [
+                "slack",
+                "settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "c6f31fe1-62cc-4689-b484-9522ee740f32",
+              "name": "Slack settings.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "slack",
+                    "settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"org_id\": \"string\",\n  \"repository_id\": \"string\",\n  \"agent_name\": null,\n  \"system_prompt\": \"string\",\n  \"created_at\": \"string\",\n  \"updated_at\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4f94d50-14b7-4cc2-b577-90414dc6b56c",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "slack",
+                    "settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fa250a22-9c03-4011-a5c9-0756779a3a91",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "slack",
+                    "settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2666ad61-af51-4bde-95d5-15ab96591317",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "slack",
+                    "settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0769bd7d-f6e8-4744-b7d5-78c47f0c118b",
+          "name": "Upsert the org's Slack settings",
+          "request": {
+            "name": "Upsert the org's Slack settings",
+            "description": {},
+            "url": {
+              "path": [
+                "slack",
+                "settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"repository_id\": \"<string>\",\n  \"agent_name\": \"<string>\",\n  \"system_prompt\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7424ceda-665b-497c-91ad-a165be0db5d1",
+              "name": "Updated settings.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "slack",
+                    "settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repository_id\": \"<string>\",\n  \"agent_name\": \"<string>\",\n  \"system_prompt\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"org_id\": \"string\",\n  \"repository_id\": \"string\",\n  \"agent_name\": null,\n  \"system_prompt\": \"string\",\n  \"created_at\": \"string\",\n  \"updated_at\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2310e176-e726-4a8e-aff6-7c666730ef99",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "slack",
+                    "settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repository_id\": \"<string>\",\n  \"agent_name\": \"<string>\",\n  \"system_prompt\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "742be414-8f16-4e23-9d65-8ac7fdd40e1f",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "slack",
+                    "settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repository_id\": \"<string>\",\n  \"agent_name\": \"<string>\",\n  \"system_prompt\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "568844ee-0c49-422c-9860-7392914408f4",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "slack",
+                    "settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repository_id\": \"<string>\",\n  \"agent_name\": \"<string>\",\n  \"system_prompt\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e1061771-3e5a-4cd3-aee7-c158de7a7e08",
+          "name": "List per-channel Slack settings and recently seen channels",
+          "request": {
+            "name": "List per-channel Slack settings and recently seen channels",
+            "description": {},
+            "url": {
+              "path": [
+                "slack",
+                "channel-settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "277bddaa-381c-4935-9d42-26ac4185dc9f",
+              "name": "Channel settings and the list of channels the bot has been mentioned in.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "slack",
+                    "channel-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"settings\": [\n    {\n      \"org_id\": \"string\",\n      \"slack_team_id\": \"string\",\n      \"slack_channel_id\": \"string\",\n      \"repository_id\": \"string\",\n      \"agent_name\": \"claude\",\n      \"system_prompt\": \"string\",\n      \"created_at\": \"string\",\n      \"updated_at\": \"string\"\n    },\n    {\n      \"org_id\": \"string\",\n      \"slack_team_id\": \"string\",\n      \"slack_channel_id\": \"string\",\n      \"repository_id\": \"string\",\n      \"agent_name\": \"claude\",\n      \"system_prompt\": \"string\",\n      \"created_at\": \"string\",\n      \"updated_at\": \"string\"\n    }\n  ],\n  \"seen_channels\": [\n    {\n      \"slack_team_id\": \"string\",\n      \"slack_team_name\": \"string\",\n      \"slack_channel_id\": \"string\",\n      \"slack_channel_name\": \"string\",\n      \"last_seen_at\": \"string\"\n    },\n    {\n      \"slack_team_id\": \"string\",\n      \"slack_team_name\": \"string\",\n      \"slack_channel_id\": \"string\",\n      \"slack_channel_name\": \"string\",\n      \"last_seen_at\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "46db93c7-de11-45b8-9f1d-1b726a98bafe",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "slack",
+                    "channel-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d944986b-1204-492b-8ca4-ce2c00e053b9",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "slack",
+                    "channel-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "858cb48a-9c08-408d-a299-91a328e2becf",
+          "name": "Upsert per-channel Slack settings",
+          "request": {
+            "name": "Upsert per-channel Slack settings",
+            "description": {},
+            "url": {
+              "path": [
+                "slack",
+                "channel-settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"slack_team_id\": \"<string>\",\n  \"slack_channel_id\": \"<string>\",\n  \"repository_id\": \"<string>\",\n  \"agent_name\": \"<string>\",\n  \"system_prompt\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e4e81b0b-18ec-402c-b647-9e06b515b4c7",
+              "name": "Updated channel settings.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "slack",
+                    "channel-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"slack_team_id\": \"<string>\",\n  \"slack_channel_id\": \"<string>\",\n  \"repository_id\": \"<string>\",\n  \"agent_name\": \"<string>\",\n  \"system_prompt\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"org_id\": \"string\",\n  \"slack_team_id\": \"string\",\n  \"slack_channel_id\": \"string\",\n  \"repository_id\": \"string\",\n  \"agent_name\": \"claude\",\n  \"system_prompt\": \"string\",\n  \"created_at\": \"string\",\n  \"updated_at\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c38a510f-639a-41c9-a92d-49e6e04cb7a9",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "slack",
+                    "channel-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"slack_team_id\": \"<string>\",\n  \"slack_channel_id\": \"<string>\",\n  \"repository_id\": \"<string>\",\n  \"agent_name\": \"<string>\",\n  \"system_prompt\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a362fdf3-cf51-4859-b701-22aa76838c6d",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "slack",
+                    "channel-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"slack_team_id\": \"<string>\",\n  \"slack_channel_id\": \"<string>\",\n  \"repository_id\": \"<string>\",\n  \"agent_name\": \"<string>\",\n  \"system_prompt\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "82f1b6d3-54fa-4492-96e1-c97bd295b14d",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "slack",
+                    "channel-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"slack_team_id\": \"<string>\",\n  \"slack_channel_id\": \"<string>\",\n  \"repository_id\": \"<string>\",\n  \"agent_name\": \"<string>\",\n  \"system_prompt\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "18cfebd7-392c-48c1-a134-faabd3110627",
+          "name": "Delete per-channel Slack settings",
+          "request": {
+            "name": "Delete per-channel Slack settings",
+            "description": {},
+            "url": {
+              "path": [
+                "slack",
+                "channel-settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"slack_team_id\": \"<string>\",\n  \"slack_channel_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b74d0930-cdd8-4c0d-b6f9-438869ef8d76",
+              "name": "Deleted (or no row existed).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "slack",
+                    "channel-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"slack_team_id\": \"<string>\",\n  \"slack_channel_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d200b7fd-a868-42ed-9b9a-23003138d239",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "slack",
+                    "channel-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"slack_team_id\": \"<string>\",\n  \"slack_channel_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d6d93960-8d7e-478a-bbb7-b4328c89970f",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "slack",
+                    "channel-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"slack_team_id\": \"<string>\",\n  \"slack_channel_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "715b58b0-1812-4e52-bb8f-3bc689e84f8a",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "slack",
+                    "channel-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"slack_team_id\": \"<string>\",\n  \"slack_channel_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Per-request trace id for correlating responses with logs.",
+                  "key": "x-trace-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"error\",\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "945c9cdf-67ac-4fb8-a2f3-73f8b156f72b",
+    "name": "Amika API — v0beta1 API keys Slack API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

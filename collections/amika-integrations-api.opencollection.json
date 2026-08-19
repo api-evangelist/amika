@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amika API — v0beta1 API keys Integrations API",
+    "version": "0beta1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Integrations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List the caller's connected integrations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/integrations/credentials"
+          },
+          "docs": "List the caller's connected integrations"
+        },
+        {
+          "info": {
+            "name": "Disconnect an integration provider for the caller",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/integrations/:provider/credentials",
+            "params": [
+              {
+                "name": "provider",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Disconnect an integration provider for the caller"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

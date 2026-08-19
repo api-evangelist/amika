@@ -1,0 +1,439 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amika API — v0beta1 API keys Sandboxes API",
+    "version": "0beta1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sandboxes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Slack metadata for the org's Slack-made sandboxes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/sandboxes:slackMetadata"
+          },
+          "docs": "Slack metadata for the org's Slack-made sandboxes"
+        },
+        {
+          "info": {
+            "name": "List the org's sandboxes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/sandboxes"
+          },
+          "docs": "List the org's sandboxes"
+        },
+        {
+          "info": {
+            "name": "Create a sandbox",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/sandboxes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a sandbox"
+        },
+        {
+          "info": {
+            "name": "Read a sandbox by id or name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/sandboxes/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Read a sandbox by id or name"
+        },
+        {
+          "info": {
+            "name": "Delete a sandbox",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/sandboxes/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a sandbox"
+        },
+        {
+          "info": {
+            "name": "Start a sandbox",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/sandboxes/:id/start",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "skip_start_script",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Start a sandbox"
+        },
+        {
+          "info": {
+            "name": "Stop a sandbox",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/sandboxes/:id/stop",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Stop a sandbox"
+        },
+        {
+          "info": {
+            "name": "Create SSH access to a sandbox",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/sandboxes/:id/ssh",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create SSH access to a sandbox"
+        },
+        {
+          "info": {
+            "name": "Revoke SSH access",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/sandboxes/:id/ssh",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Revoke SSH access"
+        },
+        {
+          "info": {
+            "name": "List a sandbox's integrations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/sandboxes/:id/integrations",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List a sandbox's integrations"
+        },
+        {
+          "info": {
+            "name": "Read the Slack conversation thread for a Slack-made sandbox",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/sandboxes/:id/slack-conversation",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Read the Slack conversation thread for a Slack-made sandbox"
+        },
+        {
+          "info": {
+            "name": "List a sandbox's agent sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/sandboxes/:id/sessions",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List a sandbox's agent sessions"
+        },
+        {
+          "info": {
+            "name": "Create a new agent session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/sandboxes/:id/sessions",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new agent session"
+        },
+        {
+          "info": {
+            "name": "Read the latest agent session for a sandbox",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/sandboxes/:id/sessions/latest",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Read the latest agent session for a sandbox"
+        },
+        {
+          "info": {
+            "name": "Read an agent session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/sandboxes/:id/sessions/:sessionId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Read an agent session"
+        },
+        {
+          "info": {
+            "name": "Update an agent session",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/sandboxes/:id/sessions/:sessionId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an agent session"
+        },
+        {
+          "info": {
+            "name": "Send a message to the agent in a sandbox",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/sandboxes/:id/agent-send",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send a message to the agent in a sandbox"
+        },
+        {
+          "info": {
+            "name": "Enqueue an async agent-send job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/sandboxes/:id/agent-send-jobs",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enqueue an async agent-send job"
+        },
+        {
+          "info": {
+            "name": "Read an async agent-send job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/sandboxes/:id/agent-send-jobs/:job_id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Read an async agent-send job"
+        },
+        {
+          "info": {
+            "name": "Read workflow events from the sandbox event sink",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/sandboxes/:id/workflow/events",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Read workflow events from the sandbox event sink"
+        },
+        {
+          "info": {
+            "name": "Read the control-plane lifecycle event feed for a sandbox",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/sandboxes/:id/lifecycle-events",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Read the control-plane lifecycle event feed for a sandbox"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

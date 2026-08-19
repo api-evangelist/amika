@@ -1,0 +1,139 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amika API — v0beta1 API keys SandboxSnapshots API",
+    "version": "0beta1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SandboxSnapshots",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List sandbox-captured snapshots for the caller's org",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/sandbox-snapshots",
+            "params": [
+              {
+                "name": "repository_id",
+                "value": "",
+                "type": "query",
+                "description": "If set, only return snapshots taken from sandboxes attached to this repository."
+              },
+              {
+                "name": "source_sandbox_id",
+                "value": "",
+                "type": "query",
+                "description": "If set, only return snapshots captured from this sandbox."
+              }
+            ]
+          },
+          "docs": "List sandbox-captured snapshots for the caller's org"
+        },
+        {
+          "info": {
+            "name": "Start capturing a snapshot from a running sandbox",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/sandbox-snapshots",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Validates the request, records a snapshot in the `capturing` state, and runs the (slow) Daytona capture in the background. Returns 202 immediately; poll the listing for the row to reach `active`/`failed`."
+        },
+        {
+          "info": {
+            "name": "Preview which injected secrets a 'snapshot and delete' would remove",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/sandbox-snapshots/scrub-preview",
+            "params": [
+              {
+                "name": "sandbox",
+                "value": "",
+                "type": "query",
+                "description": "The sandbox whose injected secrets would be scrubbed."
+              },
+              {
+                "name": "by",
+                "value": "",
+                "type": "query",
+                "description": "How to interpret `sandbox`: name (default), id, or ref/name_or_id (matches either; rejects ambiguity)."
+              },
+              {
+                "name": "sandbox_id",
+                "value": "",
+                "type": "query",
+                "description": "Deprecated: use `sandbox` with `by=id` instead."
+              }
+            ]
+          },
+          "docs": "Preview which injected secrets a 'snapshot and delete' would remove"
+        },
+        {
+          "info": {
+            "name": "Read a sandbox snapshot by name (default) or id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/sandbox-snapshots/:ref",
+            "params": [
+              {
+                "name": "ref",
+                "value": "",
+                "type": "path",
+                "description": "Snapshot reference: its fully-qualified name (default) or row id. Use the `by` query param to choose."
+              },
+              {
+                "name": "by",
+                "value": "",
+                "type": "query",
+                "description": "How to interpret the reference: name (default), id, or ref/name_or_id (matches either; rejects ambiguity)."
+              }
+            ]
+          },
+          "docs": "Read a sandbox snapshot by name (default) or id"
+        },
+        {
+          "info": {
+            "name": "Delete a sandbox snapshot by name (default) or id",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/sandbox-snapshots/:ref",
+            "params": [
+              {
+                "name": "ref",
+                "value": "",
+                "type": "path",
+                "description": "Snapshot reference: its fully-qualified name (default) or row id. Use the `by` query param to choose."
+              },
+              {
+                "name": "by",
+                "value": "",
+                "type": "query",
+                "description": "How to interpret the reference: name (default), id, or ref/name_or_id (matches either; rejects ambiguity)."
+              }
+            ]
+          },
+          "docs": "Delete a sandbox snapshot by name (default) or id"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

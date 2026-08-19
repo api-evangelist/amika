@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amika API — v0beta1 API keys Slack API",
+    "version": "0beta1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Slack",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Read the org's Slack settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/slack/settings"
+          },
+          "docs": "Read the org's Slack settings"
+        },
+        {
+          "info": {
+            "name": "Upsert the org's Slack settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/slack/settings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upsert the org's Slack settings"
+        },
+        {
+          "info": {
+            "name": "List per-channel Slack settings and recently seen channels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/slack/channel-settings"
+          },
+          "docs": "List per-channel Slack settings and recently seen channels"
+        },
+        {
+          "info": {
+            "name": "Upsert per-channel Slack settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/slack/channel-settings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upsert per-channel Slack settings"
+        },
+        {
+          "info": {
+            "name": "Delete per-channel Slack settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/slack/channel-settings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete per-channel Slack settings"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

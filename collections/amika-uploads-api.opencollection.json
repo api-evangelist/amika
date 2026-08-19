@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amika API — v0beta1 API keys Uploads API",
+    "version": "0beta1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Uploads",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a one-time signed upload URL for the org's storage bucket",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/storage/uploads",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a one-time signed upload URL for the org's storage bucket"
+        },
+        {
+          "info": {
+            "name": "Create one-time signed upload URLs for several objects in one call",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/storage/uploads/batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create one-time signed upload URLs for several objects in one call"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

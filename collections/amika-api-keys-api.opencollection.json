@@ -1,0 +1,77 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amika API — v0beta1 API keys API",
+    "version": "0beta1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "API keys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List organization API keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api-keys",
+            "params": [
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor returned by a previous list call."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of API keys to return."
+              }
+            ]
+          },
+          "docs": "List organization API keys"
+        },
+        {
+          "info": {
+            "name": "Create an API key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api-keys",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an API key"
+        },
+        {
+          "info": {
+            "name": "Delete an API key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api-keys/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "WorkOS API key id."
+              }
+            ]
+          },
+          "docs": "Delete an API key"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

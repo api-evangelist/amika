@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amika API — v0beta1 API keys Git user settings API",
+    "version": "0beta1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Git user settings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Read the caller's git user settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/git-user-settings"
+          },
+          "docs": "Read the caller's git user settings"
+        },
+        {
+          "info": {
+            "name": "Create or update the caller's git user settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/git-user-settings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create or update the caller's git user settings"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
