@@ -44,6 +44,16 @@ tags:
 - CI/CD
 - Automation
 - Software Factory
+tags_raw:
+- Company
+- AI Agents
+- Coding Agents
+- Developer Tools
+- Sandboxes
+- Infrastructure
+- CI/CD
+- Automation
+- Software Factory
 - API
 maintainers:
 - FN: Kin Lane
@@ -57,6 +67,8 @@ apis:
   humanURL: https://docs.amika.dev/reference/api-reference
   baseURL: https://app.amika.dev/api/v0beta1
   tags:
+  - APIKeys
+  tags_raw:
   - API keys
   properties:
   - type: OpenAPI
@@ -137,6 +149,8 @@ apis:
   humanURL: https://docs.amika.dev/reference/api-reference
   baseURL: https://app.amika.dev/api/v0beta1
   tags:
+  - Integration
+  tags_raw:
   - Integrations
   properties:
   - type: OpenAPI
