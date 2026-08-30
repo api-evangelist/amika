@@ -81,7 +81,7 @@ apis:
   humanURL: https://docs.amika.dev/reference/api-reference
   baseURL: https://app.amika.dev/api/v0beta1
   tags:
-  - APIKeys
+  - API keys
   tags_raw:
   - API keys
   properties:
