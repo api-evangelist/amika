@@ -53,7 +53,7 @@ tags:
 - AI Agents
 - Coding Agents
 - Developer Tools
-- Sandboxes
+- Sandbox
 - Infrastructure
 - CI/CD
 - Automation
@@ -205,6 +205,8 @@ apis:
   humanURL: https://docs.amika.dev/reference/api-reference
   baseURL: https://app.amika.dev/api/v0beta1
   tags:
+  - Sandbox
+  tags_raw:
   - Sandboxes
   properties:
   - type: OpenAPI
