@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Amika API — v0beta1 API keys Slack API
+  title: Amika API — v0beta1 Slack API
   version: 0beta1
 tags:
 - name: Slack
@@ -110,6 +110,8 @@ paths:
                 - type
                 - error_code
                 - message
+      operationId: getSlackSettings
+      x-operation-id-source: derived
     put:
       tags:
       - Slack
@@ -219,6 +221,8 @@ paths:
                 - type
                 - error_code
                 - message
+      operationId: putSlackSettings
+      x-operation-id-source: derived
   /slack/channel-settings:
     get:
       tags:
@@ -294,6 +298,8 @@ paths:
                 - type
                 - error_code
                 - message
+      operationId: getSlackChannelSettings
+      x-operation-id-source: derived
     put:
       tags:
       - Slack
@@ -403,6 +409,8 @@ paths:
                 - type
                 - error_code
                 - message
+      operationId: putSlackChannelSettings
+      x-operation-id-source: derived
     delete:
       tags:
       - Slack
@@ -508,43 +516,34 @@ paths:
                 - type
                 - error_code
                 - message
+      operationId: deleteSlackChannelSettings
+      x-operation-id-source: derived
 components:
   schemas:
-    SlackOrgSettings:
+    SlackSeenChannel:
       type: object
       properties:
-        org_id:
+        slack_team_id:
           type: string
-        repository_id:
-          type: string
-          nullable: true
-        agent_name:
+        slack_team_name:
           type: string
           nullable: true
-          enum:
-          - claude
-          - codex
-          - null
-        system_prompt:
+        slack_channel_id:
+          type: string
+        slack_channel_name:
           type: string
           nullable: true
-        created_at:
-          anyOf:
-          - type: string
-          - type: string
-            format: date-time
-        updated_at:
+        last_seen_at:
           anyOf:
           - type: string
           - type: string
             format: date-time
       required:
-      - org_id
-      - repository_id
-      - agent_name
-      - system_prompt
-      - created_at
-      - updated_at
+      - slack_team_id
+      - slack_team_name
+      - slack_channel_id
+      - slack_channel_name
+      - last_seen_at
     SlackChannelSettingsUpsert:
       type: object
       properties:
@@ -571,41 +570,6 @@ components:
       required:
       - slack_team_id
       - slack_channel_id
-    SlackChannelSettingsList:
-      type: object
-      properties:
-        settings:
-          type: array
-          items:
-            $ref: '#/components/schemas/SlackChannelSettings'
-        seen_channels:
-          type: array
-          items:
-            $ref: '#/components/schemas/SlackSeenChannel'
-      required:
-      - settings
-      - seen_channels
-    SlackOrgSettingsUpsert:
-      type: object
-      properties:
-        repository_id:
-          type: string
-          nullable: true
-          minLength: 1
-        agent_name:
-          type: string
-          nullable: true
-          enum:
-          - claude
-          - codex
-          - null
-        system_prompt:
-          type: string
-          nullable: true
-      required:
-      - repository_id
-      - agent_name
-      - system_prompt
     SlackChannelSettings:
       type: object
       properties:
@@ -647,30 +611,27 @@ components:
       - system_prompt
       - created_at
       - updated_at
-    SlackSeenChannel:
+    SlackOrgSettingsUpsert:
       type: object
       properties:
-        slack_team_id:
-          type: string
-        slack_team_name:
+        repository_id:
           type: string
           nullable: true
-        slack_channel_id:
-          type: string
-        slack_channel_name:
+          minLength: 1
+        agent_name:
           type: string
           nullable: true
-        last_seen_at:
-          anyOf:
-          - type: string
-          - type: string
-            format: date-time
+          enum:
+          - claude
+          - codex
+          - null
+        system_prompt:
+          type: string
+          nullable: true
       required:
-      - slack_team_id
-      - slack_team_name
-      - slack_channel_id
-      - slack_channel_name
-      - last_seen_at
+      - repository_id
+      - agent_name
+      - system_prompt
     SlackChannelSettingsDelete:
       type: object
       properties:
@@ -683,3 +644,52 @@ components:
       required:
       - slack_team_id
       - slack_channel_id
+    SlackChannelSettingsList:
+      type: object
+      properties:
+        settings:
+          type: array
+          items:
+            $ref: '#/components/schemas/SlackChannelSettings'
+        seen_channels:
+          type: array
+          items:
+            $ref: '#/components/schemas/SlackSeenChannel'
+      required:
+      - settings
+      - seen_channels
+    SlackOrgSettings:
+      type: object
+      properties:
+        org_id:
+          type: string
+        repository_id:
+          type: string
+          nullable: true
+        agent_name:
+          type: string
+          nullable: true
+          enum:
+          - claude
+          - codex
+          - null
+        system_prompt:
+          type: string
+          nullable: true
+        created_at:
+          anyOf:
+          - type: string
+          - type: string
+            format: date-time
+        updated_at:
+          anyOf:
+          - type: string
+          - type: string
+            format: date-time
+      required:
+      - org_id
+      - repository_id
+      - agent_name
+      - system_prompt
+      - created_at
+      - updated_at

@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Amika API — v0beta1 API keys SandboxSnapshots API
+  title: Amika API — v0beta1 Sandbox Snapshots API
   version: 0beta1
 tags:
 - name: SandboxSnapshots
@@ -95,6 +95,8 @@ paths:
                 - type
                 - error_code
                 - message
+      operationId: getSandboxSnapshots
+      x-operation-id-source: derived
     post:
       tags:
       - SandboxSnapshots
@@ -295,6 +297,8 @@ paths:
                 - type
                 - error_code
                 - message
+      operationId: postSandboxSnapshots
+      x-operation-id-source: derived
   /sandbox-snapshots/scrub-preview:
     get:
       tags:
@@ -519,6 +523,8 @@ paths:
                 - type
                 - error_code
                 - message
+      operationId: getSandboxSnapshotsScrubPreview
+      x-operation-id-source: derived
   /sandbox-snapshots/{ref}:
     get:
       tags:
@@ -705,6 +711,8 @@ paths:
                 - type
                 - error_code
                 - message
+      operationId: getSandboxSnapshotsByRef
+      x-operation-id-source: derived
     delete:
       tags:
       - SandboxSnapshots
@@ -886,8 +894,24 @@ paths:
                 - type
                 - error_code
                 - message
+      operationId: deleteSandboxSnapshotsByRef
+      x-operation-id-source: derived
 components:
   schemas:
+    SandboxScrubPreviewResponse:
+      type: object
+      properties:
+        files:
+          type: array
+          items:
+            type: string
+        env_vars:
+          type: array
+          items:
+            type: string
+      required:
+      - files
+      - env_vars
     SandboxSnapshot:
       type: object
       properties:
@@ -951,15 +975,6 @@ components:
       - created_at
       - updated_at
       - daytona
-    ListSandboxSnapshotsResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/SandboxSnapshot'
-      required:
-      - items
     ExperimentalDaytonaSnapshot:
       type: object
       nullable: true
@@ -990,6 +1005,15 @@ components:
       - name
       additionalProperties:
         nullable: true
+    ListSandboxSnapshotsResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SandboxSnapshot'
+      required:
+      - items
     CreateSandboxSnapshotRequest:
       type: object
       properties:
@@ -1021,17 +1045,3 @@ components:
           description: 'scrub_and_delete (default): remove Amika-injected secrets (credential files + injected env vars) from the sandbox, capture the snapshot from the clean filesystem, then delete the source sandbox. full: capture everything as-is — including secrets — and keep the sandbox running.'
       required:
       - name
-    SandboxScrubPreviewResponse:
-      type: object
-      properties:
-        files:
-          type: array
-          items:
-            type: string
-        env_vars:
-          type: array
-          items:
-            type: string
-      required:
-      - files
-      - env_vars

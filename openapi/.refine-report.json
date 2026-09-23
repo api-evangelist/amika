@@ -1,18 +1,7 @@
 {
   "provider": "amika",
   "sources": [
-    "amika-api-keys-api-openapi.yml",
-    "amika-docker-registries-api-openapi.yml",
-    "amika-downloads-api-openapi.yml",
-    "amika-git-user-settings-api-openapi.yml",
-    "amika-integrations-api-openapi.yml",
-    "amika-repositories-api-openapi.yml",
-    "amika-sandboxes-api-openapi.yml",
-    "amika-sandboxsnapshots-api-openapi.yml",
-    "amika-secrets-api-openapi.yml",
-    "amika-services-api-openapi.yml",
-    "amika-slack-api-openapi.yml",
-    "amika-uploads-api-openapi.yml"
+    "_original/amika-openapi.json"
   ],
   "outputs": [
     "amika-api-keys-api-openapi.yml",
@@ -21,8 +10,8 @@
     "amika-git-user-settings-api-openapi.yml",
     "amika-integrations-api-openapi.yml",
     "amika-repositories-api-openapi.yml",
-    "amika-sandboxes-api-openapi.yml",
     "amika-sandboxsnapshots-api-openapi.yml",
+    "amika-sandboxes-api-openapi.yml",
     "amika-secrets-api-openapi.yml",
     "amika-services-api-openapi.yml",
     "amika-slack-api-openapi.yml",
@@ -31,6 +20,35 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "amika-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "amika-openapi.json: declared missing tag: API keys",
+    "amika-openapi.json: declared missing tag: Docker registries",
+    "amika-openapi.json: declared missing tag: Downloads",
+    "amika-openapi.json: declared missing tag: Git user settings",
+    "amika-openapi.json: declared missing tag: Integrations",
+    "amika-openapi.json: declared missing tag: Repositories",
+    "amika-openapi.json: declared missing tag: SandboxSnapshots",
+    "amika-openapi.json: declared missing tag: Sandboxes",
+    "amika-openapi.json: declared missing tag: Secrets",
+    "amika-openapi.json: declared missing tag: Services",
+    "amika-openapi.json: declared missing tag: Slack",
+    "amika-openapi.json: declared missing tag: Uploads",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "amika-api-keys-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amika-docker-registries-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amika-downloads-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amika-git-user-settings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amika-integrations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amika-repositories-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amika-sandboxes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amika-sandboxsnapshots-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amika-secrets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amika-services-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amika-slack-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amika-uploads-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Amika API — v0beta1 API keys Docker registries API
+  title: Amika API — v0beta1 Docker registries API
   version: 0beta1
 tags:
 - name: Docker registries
@@ -80,6 +80,8 @@ paths:
                 - type
                 - error_code
                 - message
+      operationId: getDockerRegistries
+      x-operation-id-source: derived
     post:
       tags:
       - Docker registries
@@ -219,6 +221,8 @@ paths:
                 - type
                 - error_code
                 - message
+      operationId: postDockerRegistries
+      x-operation-id-source: derived
   /docker-registries/{id}:
     delete:
       tags:
@@ -357,6 +361,8 @@ paths:
                 - type
                 - error_code
                 - message
+      operationId: deleteDockerRegistriesById
+      x-operation-id-source: derived
 components:
   schemas:
     DockerRegistry:
@@ -396,6 +402,10 @@ components:
       - daytona_registry_id
       - created_at
       - updated_at
+    ListDockerRegistriesResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/DockerRegistry'
     CreateDockerRegistryRequest:
       type: object
       properties:
@@ -418,7 +428,3 @@ components:
       - url
       - username
       - password
-    ListDockerRegistriesResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/DockerRegistry'
