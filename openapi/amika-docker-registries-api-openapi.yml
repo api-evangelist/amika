@@ -365,6 +365,32 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    CreateDockerRegistryRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+        url:
+          type: string
+          minLength: 1
+        username:
+          type: string
+          minLength: 1
+        password:
+          type: string
+          minLength: 1
+        project:
+          type: string
+      required:
+      - name
+      - url
+      - username
+      - password
+    ListDockerRegistriesResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/DockerRegistry'
     DockerRegistry:
       type: object
       properties:
@@ -402,29 +428,3 @@ components:
       - daytona_registry_id
       - created_at
       - updated_at
-    ListDockerRegistriesResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/DockerRegistry'
-    CreateDockerRegistryRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          minLength: 1
-        url:
-          type: string
-          minLength: 1
-        username:
-          type: string
-          minLength: 1
-        password:
-          type: string
-          minLength: 1
-        project:
-          type: string
-      required:
-      - name
-      - url
-      - username
-      - password

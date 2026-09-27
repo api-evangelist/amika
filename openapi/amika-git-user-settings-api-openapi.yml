@@ -195,6 +195,31 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    GitUserSettingsRow:
+      type: object
+      properties:
+        id:
+          type: string
+        org_id:
+          type: string
+        user_id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - id
+      - org_id
+      - user_id
+      - name
+      - email
+      - created_at
+      - updated_at
     GitUserSettingsResponse:
       anyOf:
       - type: object
@@ -253,28 +278,3 @@ components:
       required:
       - name
       - email
-    GitUserSettingsRow:
-      type: object
-      properties:
-        id:
-          type: string
-        org_id:
-          type: string
-        user_id:
-          type: string
-        name:
-          type: string
-        email:
-          type: string
-        created_at:
-          type: string
-        updated_at:
-          type: string
-      required:
-      - id
-      - org_id
-      - user_id
-      - name
-      - email
-      - created_at
-      - updated_at

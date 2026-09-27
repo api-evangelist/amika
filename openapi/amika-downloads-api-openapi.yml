@@ -409,17 +409,6 @@ components:
       - path
       - download_url
       - expires_in
-    CreateDownloadRequest:
-      type: object
-      properties:
-        filename:
-          type: string
-          minLength: 1
-        download:
-          type: boolean
-          default: false
-      required:
-      - filename
     ListDownloadsResponse:
       type: object
       properties:
@@ -456,3 +445,14 @@ components:
       required:
       - key
       - download_url
+    CreateDownloadRequest:
+      type: object
+      properties:
+        filename:
+          type: string
+          minLength: 1
+        download:
+          type: boolean
+          default: false
+      required:
+      - filename

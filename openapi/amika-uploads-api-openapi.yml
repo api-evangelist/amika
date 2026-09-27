@@ -382,6 +382,25 @@ components:
           default: false
       required:
       - filename
+    UploadResponse:
+      type: object
+      properties:
+        bucket:
+          type: string
+        path:
+          type: string
+        upload_url:
+          type: string
+        token:
+          type: string
+        expires_in:
+          type: integer
+      required:
+      - bucket
+      - path
+      - upload_url
+      - token
+      - expires_in
     UploadBatchResponse:
       type: object
       properties:
@@ -407,23 +426,4 @@ components:
       required:
       - bucket
       - objects
-      - expires_in
-    UploadResponse:
-      type: object
-      properties:
-        bucket:
-          type: string
-        path:
-          type: string
-        upload_url:
-          type: string
-        token:
-          type: string
-        expires_in:
-          type: integer
-      required:
-      - bucket
-      - path
-      - upload_url
-      - token
       - expires_in
