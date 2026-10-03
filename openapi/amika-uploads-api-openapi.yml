@@ -371,17 +371,6 @@ components:
           maxItems: 100
       required:
       - files
-    CreateUploadRequest:
-      type: object
-      properties:
-        filename:
-          type: string
-          minLength: 1
-        upsert:
-          type: boolean
-          default: false
-      required:
-      - filename
     UploadResponse:
       type: object
       properties:
@@ -427,3 +416,14 @@ components:
       - bucket
       - objects
       - expires_in
+    CreateUploadRequest:
+      type: object
+      properties:
+        filename:
+          type: string
+          minLength: 1
+        upsert:
+          type: boolean
+          default: false
+      required:
+      - filename

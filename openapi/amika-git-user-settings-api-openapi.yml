@@ -195,6 +195,18 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    UpsertGitUserSettingsRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+        email:
+          type: string
+          minLength: 1
+      required:
+      - name
+      - email
     GitUserSettingsRow:
       type: object
       properties:
@@ -266,15 +278,3 @@ components:
         required:
         - configured
         - suggestion
-    UpsertGitUserSettingsRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          minLength: 1
-        email:
-          type: string
-          minLength: 1
-      required:
-      - name
-      - email

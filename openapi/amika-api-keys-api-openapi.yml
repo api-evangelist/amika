@@ -358,27 +358,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ListApiKeysResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiKeySummary'
-        pageInfo:
-          type: object
-          properties:
-            after:
-              type: string
-              nullable: true
-            hasNextPage:
-              type: boolean
-          required:
-          - after
-          - hasNextPage
-      required:
-      - data
-      - pageInfo
     ApiKeySummary:
       type: object
       properties:
@@ -411,6 +390,27 @@ components:
           description: Human-readable name for the API key.
       required:
       - name
+    ListApiKeysResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiKeySummary'
+        pageInfo:
+          type: object
+          properties:
+            after:
+              type: string
+              nullable: true
+            hasNextPage:
+              type: boolean
+          required:
+          - after
+          - hasNextPage
+      required:
+      - data
+      - pageInfo
     ApiKeyWithValue:
       allOf:
       - $ref: '#/components/schemas/ApiKeySummary'

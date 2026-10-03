@@ -365,6 +365,10 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    ListDockerRegistriesResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/DockerRegistry'
     CreateDockerRegistryRequest:
       type: object
       properties:
@@ -387,10 +391,6 @@ components:
       - url
       - username
       - password
-    ListDockerRegistriesResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/DockerRegistry'
     DockerRegistry:
       type: object
       properties:
