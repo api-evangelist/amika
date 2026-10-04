@@ -1,0 +1,38 @@
+slug: amika
+provider: Amika
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Sandboxes
+  spec_file: amika-sandboxes-api-openapi.yml
+  capability_id: BC-4210.20
+  capability_id_l1: BC-4210
+  capability_name: Environment Management
+  confidence: 0.7
+  evidence: POST /sandboxes 'Create a sandbox'; POST /sandboxes/{id}/start; POST /sandboxes/{id}/ssh 'Create
+    SSH access to a sandbox'
+  reason: Provisioning, lifecycle control and access to isolated development VMs is Environment Management
+    (provisioning and stewardship of non-production environments used for development). An alternative
+    reading is Engineering Productivity Management (internal developer platform), which keeps confidence
+    below 0.8.
+- tag: Secrets
+  spec_file: amika-secrets-api-openapi.yml
+  capability_id: BC-4210.60
+  capability_id_l1: BC-4210
+  capability_name: Configuration & Secrets Management
+  confidence: 0.7
+  evidence: POST /secrets 'Create a generic secret'; POST /secrets/claude/{id}/reveal 'Reveal a Claude
+    credential value'; schema RevealSecretResponse
+  reason: Storage, update, revelation and deletion of secrets and model-provider credentials consumed
+    by running sandboxes matches Configuration & Secrets Management. Some overlap with developer credential
+    management keeps this short of 0.8.

@@ -326,6 +326,9 @@ apis:
   - type: Conformance
     url: conformance/amika-conformance.yml
 common:
+- type: CapabilityMap
+  url: capabilities/amika-capability-edges.yml
+  name: Amika Business Capability Map
 - type: Overlay
   url: overlays/amika-openapi-overlay.yaml
 - type: IssueTracker
