@@ -520,58 +520,30 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    SlackChannelSettingsUpsert:
+    SlackSeenChannel:
       type: object
       properties:
         slack_team_id:
           type: string
-          minLength: 1
+        slack_team_name:
+          type: string
+          nullable: true
         slack_channel_id:
           type: string
-          minLength: 1
-        repository_id:
+        slack_channel_name:
           type: string
           nullable: true
-          minLength: 1
-        agent_name:
-          type: string
-          nullable: true
-          enum:
-          - claude
-          - codex
-          - null
-        system_prompt:
-          type: string
-          nullable: true
+        last_seen_at:
+          anyOf:
+          - type: string
+          - type: string
+            format: date-time
       required:
       - slack_team_id
+      - slack_team_name
       - slack_channel_id
-    SlackChannelSettingsList:
-      type: object
-      properties:
-        settings:
-          type: array
-          items:
-            $ref: '#/components/schemas/SlackChannelSettings'
-        seen_channels:
-          type: array
-          items:
-            $ref: '#/components/schemas/SlackSeenChannel'
-      required:
-      - settings
-      - seen_channels
-    SlackChannelSettingsDelete:
-      type: object
-      properties:
-        slack_team_id:
-          type: string
-          minLength: 1
-        slack_channel_id:
-          type: string
-          minLength: 1
-      required:
-      - slack_team_id
-      - slack_channel_id
+      - slack_channel_name
+      - last_seen_at
     SlackOrgSettings:
       type: object
       properties:
@@ -607,30 +579,53 @@ components:
       - system_prompt
       - created_at
       - updated_at
-    SlackSeenChannel:
+    SlackOrgSettingsUpsert:
+      type: object
+      properties:
+        repository_id:
+          type: string
+          nullable: true
+          minLength: 1
+        agent_name:
+          type: string
+          nullable: true
+          enum:
+          - claude
+          - codex
+          - null
+        system_prompt:
+          type: string
+          nullable: true
+      required:
+      - repository_id
+      - agent_name
+      - system_prompt
+    SlackChannelSettingsUpsert:
       type: object
       properties:
         slack_team_id:
           type: string
-        slack_team_name:
-          type: string
-          nullable: true
+          minLength: 1
         slack_channel_id:
           type: string
-        slack_channel_name:
+          minLength: 1
+        repository_id:
           type: string
           nullable: true
-        last_seen_at:
-          anyOf:
-          - type: string
-          - type: string
-            format: date-time
+          minLength: 1
+        agent_name:
+          type: string
+          nullable: true
+          enum:
+          - claude
+          - codex
+          - null
+        system_prompt:
+          type: string
+          nullable: true
       required:
       - slack_team_id
-      - slack_team_name
       - slack_channel_id
-      - slack_channel_name
-      - last_seen_at
     SlackChannelSettings:
       type: object
       properties:
@@ -672,24 +667,29 @@ components:
       - system_prompt
       - created_at
       - updated_at
-    SlackOrgSettingsUpsert:
+    SlackChannelSettingsDelete:
       type: object
       properties:
-        repository_id:
+        slack_team_id:
           type: string
-          nullable: true
           minLength: 1
-        agent_name:
+        slack_channel_id:
           type: string
-          nullable: true
-          enum:
-          - claude
-          - codex
-          - null
-        system_prompt:
-          type: string
-          nullable: true
+          minLength: 1
       required:
-      - repository_id
-      - agent_name
-      - system_prompt
+      - slack_team_id
+      - slack_channel_id
+    SlackChannelSettingsList:
+      type: object
+      properties:
+        settings:
+          type: array
+          items:
+            $ref: '#/components/schemas/SlackChannelSettings'
+        seen_channels:
+          type: array
+          items:
+            $ref: '#/components/schemas/SlackSeenChannel'
+      required:
+      - settings
+      - seen_channels

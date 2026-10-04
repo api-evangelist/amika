@@ -1022,10 +1022,66 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ListRepositoriesResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/Repository'
+    UpsertWorkflowRequest:
+      type: object
+      properties:
+        default_agent:
+          type: string
+          nullable: true
+          enum:
+          - claude
+          - codex
+          - null
+        start_step:
+          type: string
+          pattern: ^[a-zA-Z0-9_][a-zA-Z0-9_-]{0,63}$
+        steps:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                pattern: ^[a-zA-Z0-9_][a-zA-Z0-9_-]{0,63}$
+              body:
+                type: string
+                minLength: 1
+              on_success:
+                type: string
+                nullable: true
+                pattern: ^[a-zA-Z0-9_][a-zA-Z0-9_-]{0,63}$
+              on_failure:
+                type: string
+                nullable: true
+                pattern: ^[a-zA-Z0-9_][a-zA-Z0-9_-]{0,63}$
+            required:
+            - name
+            - body
+          minItems: 1
+      required:
+      - start_step
+      - steps
+    CreateRepositoryRequest:
+      type: object
+      properties:
+        repo_url:
+          type: string
+          minLength: 1
+        setup_script:
+          type: string
+        start_script:
+          type: string
+        sandbox_preset:
+          type: string
+          nullable: true
+        sandbox_size:
+          type: string
+          nullable: true
+        default_snapshot:
+          type: string
+          nullable: true
+      required:
+      - repo_url
     RepoIntegrationsResponse:
       type: array
       items:
@@ -1062,6 +1118,51 @@ components:
         - mcp_server_url
         - created_at
         - updated_at
+    ListRepositoriesResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/Repository'
+    UpsertIntegrationsRequest:
+      type: object
+      properties:
+        integrations:
+          type: array
+          items:
+            oneOf:
+            - type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+                mcp_server_type:
+                  type: string
+                  enum:
+                  - http
+                mcp_server_url:
+                  type: string
+                  format: uri
+              required:
+              - name
+              - mcp_server_type
+              - mcp_server_url
+            - type: object
+              properties:
+                name:
+                  type: string
+                  enum:
+                  - playwright
+                mcp_server_type:
+                  type: string
+                  enum:
+                  - stdio
+                mcp_server_url:
+                  type: string
+                  default: ''
+              required:
+              - name
+              - mcp_server_type
+      required:
+      - integrations
     Repository:
       type: object
       properties:
@@ -1113,107 +1214,6 @@ components:
       - updated_at
       additionalProperties:
         nullable: true
-    CreateRepositoryRequest:
-      type: object
-      properties:
-        repo_url:
-          type: string
-          minLength: 1
-        setup_script:
-          type: string
-        start_script:
-          type: string
-        sandbox_preset:
-          type: string
-          nullable: true
-        sandbox_size:
-          type: string
-          nullable: true
-        default_snapshot:
-          type: string
-          nullable: true
-      required:
-      - repo_url
-    UpsertWorkflowRequest:
-      type: object
-      properties:
-        default_agent:
-          type: string
-          nullable: true
-          enum:
-          - claude
-          - codex
-          - null
-        start_step:
-          type: string
-          pattern: ^[a-zA-Z0-9_][a-zA-Z0-9_-]{0,63}$
-        steps:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                pattern: ^[a-zA-Z0-9_][a-zA-Z0-9_-]{0,63}$
-              body:
-                type: string
-                minLength: 1
-              on_success:
-                type: string
-                nullable: true
-                pattern: ^[a-zA-Z0-9_][a-zA-Z0-9_-]{0,63}$
-              on_failure:
-                type: string
-                nullable: true
-                pattern: ^[a-zA-Z0-9_][a-zA-Z0-9_-]{0,63}$
-            required:
-            - name
-            - body
-          minItems: 1
-      required:
-      - start_step
-      - steps
-    UpsertIntegrationsRequest:
-      type: object
-      properties:
-        integrations:
-          type: array
-          items:
-            oneOf:
-            - type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                mcp_server_type:
-                  type: string
-                  enum:
-                  - http
-                mcp_server_url:
-                  type: string
-                  format: uri
-              required:
-              - name
-              - mcp_server_type
-              - mcp_server_url
-            - type: object
-              properties:
-                name:
-                  type: string
-                  enum:
-                  - playwright
-                mcp_server_type:
-                  type: string
-                  enum:
-                  - stdio
-                mcp_server_url:
-                  type: string
-                  default: ''
-              required:
-              - name
-              - mcp_server_type
-      required:
-      - integrations
     WorkflowResponse:
       type: object
       properties:

@@ -898,6 +898,15 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    ListSandboxSnapshotsResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SandboxSnapshot'
+      required:
+      - items
     ExperimentalDaytonaSnapshot:
       type: object
       nullable: true
@@ -928,6 +937,37 @@ components:
       - name
       additionalProperties:
         nullable: true
+    CreateSandboxSnapshotRequest:
+      type: object
+      properties:
+        sandbox_id:
+          type: string
+          minLength: 1
+          description: Source sandbox, by id.
+        sandbox_name:
+          type: string
+          minLength: 1
+          description: Source sandbox, by name.
+        sandbox_ref:
+          type: string
+          minLength: 1
+          description: Source sandbox, by id or name; rejected if both match.
+        name:
+          type: string
+          minLength: 1
+          maxLength: 80
+        description:
+          type: string
+          maxLength: 500
+        mode:
+          type: string
+          enum:
+          - scrub_and_delete
+          - full
+          default: scrub_and_delete
+          description: 'scrub_and_delete (default): remove Amika-injected secrets (credential files + injected env vars) from the sandbox, capture the snapshot from the clean filesystem, then delete the source sandbox. full: capture everything as-is — including secrets — and keep the sandbox running.'
+      required:
+      - name
     SandboxSnapshot:
       type: object
       properties:
@@ -991,46 +1031,6 @@ components:
       - created_at
       - updated_at
       - daytona
-    ListSandboxSnapshotsResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/SandboxSnapshot'
-      required:
-      - items
-    CreateSandboxSnapshotRequest:
-      type: object
-      properties:
-        sandbox_id:
-          type: string
-          minLength: 1
-          description: Source sandbox, by id.
-        sandbox_name:
-          type: string
-          minLength: 1
-          description: Source sandbox, by name.
-        sandbox_ref:
-          type: string
-          minLength: 1
-          description: Source sandbox, by id or name; rejected if both match.
-        name:
-          type: string
-          minLength: 1
-          maxLength: 80
-        description:
-          type: string
-          maxLength: 500
-        mode:
-          type: string
-          enum:
-          - scrub_and_delete
-          - full
-          default: scrub_and_delete
-          description: 'scrub_and_delete (default): remove Amika-injected secrets (credential files + injected env vars) from the sandbox, capture the snapshot from the clean filesystem, then delete the source sandbox. full: capture everything as-is — including secrets — and keep the sandbox running.'
-      required:
-      - name
     SandboxScrubPreviewResponse:
       type: object
       properties:

@@ -393,17 +393,20 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    CreateDownloadRequest:
+    DownloadObject:
       type: object
       properties:
-        filename:
+        key:
           type: string
-          minLength: 1
-        download:
-          type: boolean
-          default: false
+        size:
+          type: integer
+        last_modified:
+          type: string
+        download_url:
+          type: string
       required:
-      - filename
+      - key
+      - download_url
     ListDownloadsResponse:
       type: object
       properties:
@@ -426,20 +429,6 @@ components:
       - objects
       - expires_in
       - next_cursor
-    DownloadObject:
-      type: object
-      properties:
-        key:
-          type: string
-        size:
-          type: integer
-        last_modified:
-          type: string
-        download_url:
-          type: string
-      required:
-      - key
-      - download_url
     DownloadResponse:
       type: object
       properties:
@@ -456,3 +445,14 @@ components:
       - path
       - download_url
       - expires_in
+    CreateDownloadRequest:
+      type: object
+      properties:
+        filename:
+          type: string
+          minLength: 1
+        download:
+          type: boolean
+          default: false
+      required:
+      - filename

@@ -2781,32 +2781,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    SandboxLifecycleEvent:
-      type: object
-      properties:
-        id:
-          type: string
-        run_kind:
-          type: string
-        step:
-          type: string
-        status:
-          type: string
-        detail:
-          type: string
-          nullable: true
-        created_at:
-          anyOf:
-          - type: string
-          - type: string
-            format: date-time
-      required:
-      - id
-      - run_kind
-      - step
-      - status
-      - detail
-      - created_at
     AgentSession:
       type: object
       properties:
@@ -2856,6 +2830,96 @@ components:
       - metadata
       - created_at
       - updated_at
+    AgentSendJobResponse:
+      type: object
+      properties:
+        job_id:
+          type: string
+        state:
+          type: string
+        agent_session_id:
+          type: string
+          nullable: true
+        is_new_session:
+          type: boolean
+        is_error:
+          type: boolean
+        result_text:
+          type: string
+          nullable: true
+        cost_usd:
+          type: number
+        created_at:
+          anyOf:
+          - type: string
+          - type: string
+            format: date-time
+        updated_at:
+          anyOf:
+          - type: string
+          - type: string
+            format: date-time
+      required:
+      - job_id
+      - state
+      - agent_session_id
+      - is_new_session
+      - is_error
+      - result_text
+      - created_at
+      - updated_at
+    SandboxSlackMetadataResponse:
+      type: object
+      properties:
+        metadata:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              conversation_id:
+                type: string
+                nullable: true
+              team_id:
+                type: string
+              team_name:
+                type: string
+                nullable: true
+              team_icon_url:
+                type: string
+                nullable: true
+              channel_id:
+                type: string
+              channel_name:
+                type: string
+                nullable: true
+              thread_id:
+                type: string
+              preview:
+                type: string
+                nullable: true
+              status:
+                type: string
+                nullable: true
+              agent_name:
+                type: string
+                nullable: true
+                enum:
+                - claude
+                - codex
+                - null
+            required:
+            - conversation_id
+            - team_id
+            - team_name
+            - team_icon_url
+            - channel_id
+            - channel_name
+            - thread_id
+            - preview
+            - status
+            - agent_name
+      required:
+      - metadata
     SlackConversationResponse:
       type: object
       properties:
@@ -2929,47 +2993,19 @@ components:
           - messages
       required:
       - conversation
-    SandboxLifecycleEventsResponse:
+    UpdateSessionRequest:
       type: object
       properties:
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/SandboxLifecycleEvent'
-        count:
-          type: integer
-      required:
-      - events
-      - count
-    OkStatus:
-      type: object
-      properties:
-        ok:
-          type: boolean
+        status:
+          type: string
           enum:
-          - true
-      required:
-      - ok
-    AgentSendResponse:
-      type: object
-      properties:
-        session_id:
-          type: string
-        agent_session_id:
-          type: string
-        response:
-          type: string
-        is_error:
-          type: boolean
-        is_new_session:
-          type: boolean
-        cost_usd:
-          type: number
-      required:
-      - session_id
-      - response
-      - is_error
-      - is_new_session
+          - active
+          - completed
+          - failed
+        metadata:
+          type: object
+          additionalProperties:
+            nullable: true
     WorkflowEventsResponse:
       type: object
       properties:
@@ -3000,84 +3036,22 @@ components:
       - events
       - count
       - capped
-    RevokeSshRequest:
+    SandboxLifecycleEventsResponse:
       type: object
       properties:
-        token:
-          type: string
-          minLength: 1
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/SandboxLifecycleEvent'
+        count:
+          type: integer
       required:
-      - token
-    SandboxSlackMetadataResponse:
-      type: object
-      properties:
-        metadata:
-          type: object
-          additionalProperties:
-            type: object
-            properties:
-              conversation_id:
-                type: string
-                nullable: true
-              team_id:
-                type: string
-              team_name:
-                type: string
-                nullable: true
-              team_icon_url:
-                type: string
-                nullable: true
-              channel_id:
-                type: string
-              channel_name:
-                type: string
-                nullable: true
-              thread_id:
-                type: string
-              preview:
-                type: string
-                nullable: true
-              status:
-                type: string
-                nullable: true
-              agent_name:
-                type: string
-                nullable: true
-                enum:
-                - claude
-                - codex
-                - null
-            required:
-            - conversation_id
-            - team_id
-            - team_name
-            - team_icon_url
-            - channel_id
-            - channel_name
-            - thread_id
-            - preview
-            - status
-            - agent_name
-      required:
-      - metadata
-    SandboxIntegrationsResponse:
+      - events
+      - count
+    ListSandboxesResponse:
       type: array
       items:
-        type: object
-        properties:
-          sandbox_id:
-            type: string
-          name:
-            type: string
-          mcp_server_type:
-            type: string
-          mcp_server_url:
-            type: string
-        required:
-        - sandbox_id
-        - name
-        - mcp_server_type
-        - mcp_server_url
+        $ref: '#/components/schemas/Sandbox'
     CreateSandboxRequest:
       type: object
       properties:
@@ -3207,22 +3181,33 @@ components:
           - app_token
       required:
       - name
-    AgentSendJobRequest:
+    RevokeSshRequest:
       type: object
       properties:
-        message:
+        token:
           type: string
           minLength: 1
-        new_session:
-          type: boolean
-          default: false
-        session_id:
-          type: string
-        agent:
-          type: string
       required:
-      - message
-    AgentSendRequest:
+      - token
+    SandboxIntegrationsResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          sandbox_id:
+            type: string
+          name:
+            type: string
+          mcp_server_type:
+            type: string
+          mcp_server_url:
+            type: string
+        required:
+        - sandbox_id
+        - name
+        - mcp_server_type
+        - mcp_server_url
+    AgentSendJobRequest:
       type: object
       properties:
         message:
@@ -3248,44 +3233,74 @@ components:
             nullable: true
       required:
       - agent_name
-    AgentSendJobResponse:
+    AgentSendResponse:
       type: object
       properties:
-        job_id:
-          type: string
-        state:
+        session_id:
           type: string
         agent_session_id:
           type: string
-          nullable: true
-        is_new_session:
-          type: boolean
+        response:
+          type: string
         is_error:
           type: boolean
-        result_text:
-          type: string
-          nullable: true
+        is_new_session:
+          type: boolean
         cost_usd:
           type: number
+      required:
+      - session_id
+      - response
+      - is_error
+      - is_new_session
+    OkStatus:
+      type: object
+      properties:
+        ok:
+          type: boolean
+          enum:
+          - true
+      required:
+      - ok
+    SandboxLifecycleEvent:
+      type: object
+      properties:
+        id:
+          type: string
+        run_kind:
+          type: string
+        step:
+          type: string
+        status:
+          type: string
+        detail:
+          type: string
+          nullable: true
         created_at:
           anyOf:
           - type: string
           - type: string
             format: date-time
-        updated_at:
-          anyOf:
-          - type: string
-          - type: string
-            format: date-time
       required:
-      - job_id
-      - state
-      - agent_session_id
-      - is_new_session
-      - is_error
-      - result_text
+      - id
+      - run_kind
+      - step
+      - status
+      - detail
       - created_at
-      - updated_at
+    AgentSessionsList:
+      type: object
+      properties:
+        sessions:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentSession'
+        total:
+          type: integer
+          minimum: 0
+      required:
+      - sessions
+      - total
     SshAccessResponse:
       type: object
       properties:
@@ -3316,36 +3331,6 @@ components:
       - sandbox_id
       - sandbox_name
       - repo_name
-    ListSandboxesResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/Sandbox'
-    AgentSessionsList:
-      type: object
-      properties:
-        sessions:
-          type: array
-          items:
-            $ref: '#/components/schemas/AgentSession'
-        total:
-          type: integer
-          minimum: 0
-      required:
-      - sessions
-      - total
-    UpdateSessionRequest:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - active
-          - completed
-          - failed
-        metadata:
-          type: object
-          additionalProperties:
-            nullable: true
     Sandbox:
       type: object
       properties:
@@ -3556,3 +3541,18 @@ components:
       - updated_at
       additionalProperties:
         nullable: true
+    AgentSendRequest:
+      type: object
+      properties:
+        message:
+          type: string
+          minLength: 1
+        new_session:
+          type: boolean
+          default: false
+        session_id:
+          type: string
+        agent:
+          type: string
+      required:
+      - message
