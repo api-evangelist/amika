@@ -387,10 +387,6 @@ components:
       - url
       - username
       - password
-    ListDockerRegistriesResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/DockerRegistry'
     DockerRegistry:
       type: object
       properties:
@@ -428,3 +424,7 @@ components:
       - daytona_registry_id
       - created_at
       - updated_at
+    ListDockerRegistriesResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/DockerRegistry'

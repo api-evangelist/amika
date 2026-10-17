@@ -544,6 +544,53 @@ components:
       - slack_channel_id
       - slack_channel_name
       - last_seen_at
+    SlackOrgSettingsUpsert:
+      type: object
+      properties:
+        repository_id:
+          type: string
+          nullable: true
+          minLength: 1
+        agent_name:
+          type: string
+          nullable: true
+          enum:
+          - claude
+          - codex
+          - null
+        system_prompt:
+          type: string
+          nullable: true
+      required:
+      - repository_id
+      - agent_name
+      - system_prompt
+    SlackChannelSettingsDelete:
+      type: object
+      properties:
+        slack_team_id:
+          type: string
+          minLength: 1
+        slack_channel_id:
+          type: string
+          minLength: 1
+      required:
+      - slack_team_id
+      - slack_channel_id
+    SlackChannelSettingsList:
+      type: object
+      properties:
+        settings:
+          type: array
+          items:
+            $ref: '#/components/schemas/SlackChannelSettings'
+        seen_channels:
+          type: array
+          items:
+            $ref: '#/components/schemas/SlackSeenChannel'
+      required:
+      - settings
+      - seen_channels
     SlackOrgSettings:
       type: object
       properties:
@@ -579,27 +626,6 @@ components:
       - system_prompt
       - created_at
       - updated_at
-    SlackOrgSettingsUpsert:
-      type: object
-      properties:
-        repository_id:
-          type: string
-          nullable: true
-          minLength: 1
-        agent_name:
-          type: string
-          nullable: true
-          enum:
-          - claude
-          - codex
-          - null
-        system_prompt:
-          type: string
-          nullable: true
-      required:
-      - repository_id
-      - agent_name
-      - system_prompt
     SlackChannelSettingsUpsert:
       type: object
       properties:
@@ -667,29 +693,3 @@ components:
       - system_prompt
       - created_at
       - updated_at
-    SlackChannelSettingsDelete:
-      type: object
-      properties:
-        slack_team_id:
-          type: string
-          minLength: 1
-        slack_channel_id:
-          type: string
-          minLength: 1
-      required:
-      - slack_team_id
-      - slack_channel_id
-    SlackChannelSettingsList:
-      type: object
-      properties:
-        settings:
-          type: array
-          items:
-            $ref: '#/components/schemas/SlackChannelSettings'
-        seen_channels:
-          type: array
-          items:
-            $ref: '#/components/schemas/SlackSeenChannel'
-      required:
-      - settings
-      - seen_channels

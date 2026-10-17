@@ -358,15 +358,15 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    CreateApiKeyRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          minLength: 1
-          description: Human-readable name for the API key.
-      required:
-      - name
+    ApiKeyWithValue:
+      allOf:
+      - $ref: '#/components/schemas/ApiKeySummary'
+      - type: object
+        properties:
+          value:
+            type: string
+        required:
+        - value
     ApiKeySummary:
       type: object
       properties:
@@ -390,15 +390,6 @@ components:
       - lastUsedAt
       - createdAt
       - updatedAt
-    ApiKeyWithValue:
-      allOf:
-      - $ref: '#/components/schemas/ApiKeySummary'
-      - type: object
-        properties:
-          value:
-            type: string
-        required:
-        - value
     ListApiKeysResponse:
       type: object
       properties:
@@ -420,3 +411,12 @@ components:
       required:
       - data
       - pageInfo
+    CreateApiKeyRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          description: Human-readable name for the API key.
+      required:
+      - name

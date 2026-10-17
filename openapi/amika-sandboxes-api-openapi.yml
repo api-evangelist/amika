@@ -2781,277 +2781,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    AgentSession:
-      type: object
-      properties:
-        id:
-          type: string
-        sandbox_id:
-          type: string
-        org_id:
-          type: string
-        agent_name:
-          type: string
-        status:
-          type: string
-        started_at:
-          anyOf:
-          - type: string
-          - type: string
-            format: date-time
-        ended_at:
-          anyOf:
-          - type: string
-          - type: string
-            format: date-time
-          - nullable: true
-        metadata:
-          type: object
-          additionalProperties:
-            nullable: true
-        created_at:
-          anyOf:
-          - type: string
-          - type: string
-            format: date-time
-        updated_at:
-          anyOf:
-          - type: string
-          - type: string
-            format: date-time
-      required:
-      - id
-      - sandbox_id
-      - org_id
-      - agent_name
-      - status
-      - started_at
-      - ended_at
-      - metadata
-      - created_at
-      - updated_at
-    AgentSendJobResponse:
-      type: object
-      properties:
-        job_id:
-          type: string
-        state:
-          type: string
-        agent_session_id:
-          type: string
-          nullable: true
-        is_new_session:
-          type: boolean
-        is_error:
-          type: boolean
-        result_text:
-          type: string
-          nullable: true
-        cost_usd:
-          type: number
-        created_at:
-          anyOf:
-          - type: string
-          - type: string
-            format: date-time
-        updated_at:
-          anyOf:
-          - type: string
-          - type: string
-            format: date-time
-      required:
-      - job_id
-      - state
-      - agent_session_id
-      - is_new_session
-      - is_error
-      - result_text
-      - created_at
-      - updated_at
-    SandboxSlackMetadataResponse:
-      type: object
-      properties:
-        metadata:
-          type: object
-          additionalProperties:
-            type: object
-            properties:
-              conversation_id:
-                type: string
-                nullable: true
-              team_id:
-                type: string
-              team_name:
-                type: string
-                nullable: true
-              team_icon_url:
-                type: string
-                nullable: true
-              channel_id:
-                type: string
-              channel_name:
-                type: string
-                nullable: true
-              thread_id:
-                type: string
-              preview:
-                type: string
-                nullable: true
-              status:
-                type: string
-                nullable: true
-              agent_name:
-                type: string
-                nullable: true
-                enum:
-                - claude
-                - codex
-                - null
-            required:
-            - conversation_id
-            - team_id
-            - team_name
-            - team_icon_url
-            - channel_id
-            - channel_name
-            - thread_id
-            - preview
-            - status
-            - agent_name
-      required:
-      - metadata
-    SlackConversationResponse:
-      type: object
-      properties:
-        conversation:
-          type: object
-          nullable: true
-          properties:
-            conversation_id:
-              type: string
-            team_id:
-              type: string
-            team_name:
-              type: string
-              nullable: true
-            channel_id:
-              type: string
-            channel_name:
-              type: string
-              nullable: true
-            thread_id:
-              type: string
-            status:
-              type: string
-              nullable: true
-            agent_name:
-              type: string
-              nullable: true
-              enum:
-              - claude
-              - codex
-              - null
-            messages:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: string
-                  author:
-                    type: string
-                  direction:
-                    type: string
-                    enum:
-                    - inbound
-                    - outbound
-                  contents:
-                    type: string
-                  occurred_at:
-                    anyOf:
-                    - type: string
-                    - type: string
-                      format: date-time
-                  is_error:
-                    type: boolean
-                required:
-                - id
-                - author
-                - direction
-                - contents
-                - occurred_at
-                - is_error
-          required:
-          - conversation_id
-          - team_id
-          - team_name
-          - channel_id
-          - channel_name
-          - thread_id
-          - status
-          - agent_name
-          - messages
-      required:
-      - conversation
-    UpdateSessionRequest:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - active
-          - completed
-          - failed
-        metadata:
-          type: object
-          additionalProperties:
-            nullable: true
-    WorkflowEventsResponse:
-      type: object
-      properties:
-        events:
-          type: array
-          items:
-            type: object
-            properties:
-              event_type:
-                type: string
-              id:
-                type: string
-              time:
-                type: string
-              step:
-                type: string
-              contents:
-                nullable: true
-            required:
-            - event_type
-            - id
-            - time
-        count:
-          type: integer
-        capped:
-          type: boolean
-      required:
-      - events
-      - count
-      - capped
-    SandboxLifecycleEventsResponse:
-      type: object
-      properties:
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/SandboxLifecycleEvent'
-        count:
-          type: integer
-      required:
-      - events
-      - count
-    ListSandboxesResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/Sandbox'
     CreateSandboxRequest:
       type: object
       properties:
@@ -3181,14 +2910,19 @@ components:
           - app_token
       required:
       - name
-    RevokeSshRequest:
+    UpdateSessionRequest:
       type: object
       properties:
-        token:
+        status:
           type: string
-          minLength: 1
-      required:
-      - token
+          enum:
+          - active
+          - completed
+          - failed
+        metadata:
+          type: object
+          additionalProperties:
+            nullable: true
     SandboxIntegrationsResponse:
       type: array
       items:
@@ -3207,61 +2941,131 @@ components:
         - name
         - mcp_server_type
         - mcp_server_url
-    AgentSendJobRequest:
+    SlackConversationResponse:
       type: object
       properties:
-        message:
-          type: string
-          minLength: 1
-        new_session:
-          type: boolean
-          default: false
-        session_id:
-          type: string
-        agent:
-          type: string
+        conversation:
+          type: object
+          nullable: true
+          properties:
+            conversation_id:
+              type: string
+            team_id:
+              type: string
+            team_name:
+              type: string
+              nullable: true
+            channel_id:
+              type: string
+            channel_name:
+              type: string
+              nullable: true
+            thread_id:
+              type: string
+            status:
+              type: string
+              nullable: true
+            agent_name:
+              type: string
+              nullable: true
+              enum:
+              - claude
+              - codex
+              - null
+            messages:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  author:
+                    type: string
+                  direction:
+                    type: string
+                    enum:
+                    - inbound
+                    - outbound
+                  contents:
+                    type: string
+                  occurred_at:
+                    anyOf:
+                    - type: string
+                    - type: string
+                      format: date-time
+                  is_error:
+                    type: boolean
+                required:
+                - id
+                - author
+                - direction
+                - contents
+                - occurred_at
+                - is_error
+          required:
+          - conversation_id
+          - team_id
+          - team_name
+          - channel_id
+          - channel_name
+          - thread_id
+          - status
+          - agent_name
+          - messages
       required:
-      - message
-    CreateSessionRequest:
+      - conversation
+    SandboxSlackMetadataResponse:
       type: object
       properties:
-        agent_name:
-          type: string
         metadata:
           type: object
           additionalProperties:
-            nullable: true
+            type: object
+            properties:
+              conversation_id:
+                type: string
+                nullable: true
+              team_id:
+                type: string
+              team_name:
+                type: string
+                nullable: true
+              team_icon_url:
+                type: string
+                nullable: true
+              channel_id:
+                type: string
+              channel_name:
+                type: string
+                nullable: true
+              thread_id:
+                type: string
+              preview:
+                type: string
+                nullable: true
+              status:
+                type: string
+                nullable: true
+              agent_name:
+                type: string
+                nullable: true
+                enum:
+                - claude
+                - codex
+                - null
+            required:
+            - conversation_id
+            - team_id
+            - team_name
+            - team_icon_url
+            - channel_id
+            - channel_name
+            - thread_id
+            - preview
+            - status
+            - agent_name
       required:
-      - agent_name
-    AgentSendResponse:
-      type: object
-      properties:
-        session_id:
-          type: string
-        agent_session_id:
-          type: string
-        response:
-          type: string
-        is_error:
-          type: boolean
-        is_new_session:
-          type: boolean
-        cost_usd:
-          type: number
-      required:
-      - session_id
-      - response
-      - is_error
-      - is_new_session
-    OkStatus:
-      type: object
-      properties:
-        ok:
-          type: boolean
-          enum:
-          - true
-      required:
-      - ok
+      - metadata
     SandboxLifecycleEvent:
       type: object
       properties:
@@ -3288,49 +3092,60 @@ components:
       - status
       - detail
       - created_at
-    AgentSessionsList:
+    ListSandboxesResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/Sandbox'
+    AgentSendResponse:
       type: object
       properties:
-        sessions:
+        session_id:
+          type: string
+        agent_session_id:
+          type: string
+        response:
+          type: string
+        is_error:
+          type: boolean
+        is_new_session:
+          type: boolean
+        cost_usd:
+          type: number
+      required:
+      - session_id
+      - response
+      - is_error
+      - is_new_session
+    WorkflowEventsResponse:
+      type: object
+      properties:
+        events:
           type: array
           items:
-            $ref: '#/components/schemas/AgentSession'
-        total:
+            type: object
+            properties:
+              event_type:
+                type: string
+              id:
+                type: string
+              time:
+                type: string
+              step:
+                type: string
+              contents:
+                nullable: true
+            required:
+            - event_type
+            - id
+            - time
+        count:
           type: integer
-          minimum: 0
+        capped:
+          type: boolean
       required:
-      - sessions
-      - total
-    SshAccessResponse:
-      type: object
-      properties:
-        ssh_destination:
-          type: string
-        token:
-          type: string
-        expires_at:
-          anyOf:
-          - type: string
-          - type: string
-            format: date-time
-        sandbox_id:
-          type: string
-        sandbox_name:
-          type: string
-        repo_name:
-          type: string
-          nullable: true
-        web_socket_proxy_url:
-          type: string
-        private_key:
-          type: string
-      required:
-      - ssh_destination
-      - token
-      - expires_at
-      - sandbox_id
-      - sandbox_name
-      - repo_name
+      - events
+      - count
+      - capped
     Sandbox:
       type: object
       properties:
@@ -3541,6 +3356,146 @@ components:
       - updated_at
       additionalProperties:
         nullable: true
+    RevokeSshRequest:
+      type: object
+      properties:
+        token:
+          type: string
+          minLength: 1
+      required:
+      - token
+    SshAccessResponse:
+      type: object
+      properties:
+        ssh_destination:
+          type: string
+        token:
+          type: string
+        expires_at:
+          anyOf:
+          - type: string
+          - type: string
+            format: date-time
+        sandbox_id:
+          type: string
+        sandbox_name:
+          type: string
+        repo_name:
+          type: string
+          nullable: true
+        web_socket_proxy_url:
+          type: string
+        private_key:
+          type: string
+      required:
+      - ssh_destination
+      - token
+      - expires_at
+      - sandbox_id
+      - sandbox_name
+      - repo_name
+    AgentSendJobRequest:
+      type: object
+      properties:
+        message:
+          type: string
+          minLength: 1
+        new_session:
+          type: boolean
+          default: false
+        session_id:
+          type: string
+        agent:
+          type: string
+      required:
+      - message
+    AgentSession:
+      type: object
+      properties:
+        id:
+          type: string
+        sandbox_id:
+          type: string
+        org_id:
+          type: string
+        agent_name:
+          type: string
+        status:
+          type: string
+        started_at:
+          anyOf:
+          - type: string
+          - type: string
+            format: date-time
+        ended_at:
+          anyOf:
+          - type: string
+          - type: string
+            format: date-time
+          - nullable: true
+        metadata:
+          type: object
+          additionalProperties:
+            nullable: true
+        created_at:
+          anyOf:
+          - type: string
+          - type: string
+            format: date-time
+        updated_at:
+          anyOf:
+          - type: string
+          - type: string
+            format: date-time
+      required:
+      - id
+      - sandbox_id
+      - org_id
+      - agent_name
+      - status
+      - started_at
+      - ended_at
+      - metadata
+      - created_at
+      - updated_at
+    AgentSendJobResponse:
+      type: object
+      properties:
+        job_id:
+          type: string
+        state:
+          type: string
+        agent_session_id:
+          type: string
+          nullable: true
+        is_new_session:
+          type: boolean
+        is_error:
+          type: boolean
+        result_text:
+          type: string
+          nullable: true
+        cost_usd:
+          type: number
+        created_at:
+          anyOf:
+          - type: string
+          - type: string
+            format: date-time
+        updated_at:
+          anyOf:
+          - type: string
+          - type: string
+            format: date-time
+      required:
+      - job_id
+      - state
+      - agent_session_id
+      - is_new_session
+      - is_error
+      - result_text
+      - created_at
+      - updated_at
     AgentSendRequest:
       type: object
       properties:
@@ -3556,3 +3511,48 @@ components:
           type: string
       required:
       - message
+    AgentSessionsList:
+      type: object
+      properties:
+        sessions:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentSession'
+        total:
+          type: integer
+          minimum: 0
+      required:
+      - sessions
+      - total
+    OkStatus:
+      type: object
+      properties:
+        ok:
+          type: boolean
+          enum:
+          - true
+      required:
+      - ok
+    CreateSessionRequest:
+      type: object
+      properties:
+        agent_name:
+          type: string
+        metadata:
+          type: object
+          additionalProperties:
+            nullable: true
+      required:
+      - agent_name
+    SandboxLifecycleEventsResponse:
+      type: object
+      properties:
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/SandboxLifecycleEvent'
+        count:
+          type: integer
+      required:
+      - events
+      - count

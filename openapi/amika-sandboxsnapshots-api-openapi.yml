@@ -898,45 +898,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ListSandboxSnapshotsResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/SandboxSnapshot'
-      required:
-      - items
-    ExperimentalDaytonaSnapshot:
-      type: object
-      nullable: true
-      properties:
-        name:
-          type: string
-        state:
-          type: string
-        imageName:
-          type: string
-        cpu:
-          type: number
-        memory:
-          type: number
-        disk:
-          type: number
-        createdAt:
-          anyOf:
-          - type: string
-          - type: string
-            format: date-time
-        updatedAt:
-          anyOf:
-          - type: string
-          - type: string
-            format: date-time
-      required:
-      - name
-      additionalProperties:
-        nullable: true
     CreateSandboxSnapshotRequest:
       type: object
       properties:
@@ -968,6 +929,15 @@ components:
           description: 'scrub_and_delete (default): remove Amika-injected secrets (credential files + injected env vars) from the sandbox, capture the snapshot from the clean filesystem, then delete the source sandbox. full: capture everything as-is — including secrets — and keep the sandbox running.'
       required:
       - name
+    ListSandboxSnapshotsResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SandboxSnapshot'
+      required:
+      - items
     SandboxSnapshot:
       type: object
       properties:
@@ -1045,3 +1015,33 @@ components:
       required:
       - files
       - env_vars
+    ExperimentalDaytonaSnapshot:
+      type: object
+      nullable: true
+      properties:
+        name:
+          type: string
+        state:
+          type: string
+        imageName:
+          type: string
+        cpu:
+          type: number
+        memory:
+          type: number
+        disk:
+          type: number
+        createdAt:
+          anyOf:
+          - type: string
+          - type: string
+            format: date-time
+        updatedAt:
+          anyOf:
+          - type: string
+          - type: string
+            format: date-time
+      required:
+      - name
+      additionalProperties:
+        nullable: true
