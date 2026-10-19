@@ -1,11 +1,12 @@
 openapi: 3.2.0
 info:
-  title: Amika API — v0beta1 Services API
-  version: 0beta1
+  title: Amika Services API
+  version: 0beta
+  description: HTTP API for Amika coding agents. Versioned per Google AIP-185.
 tags:
 - name: Services
 paths:
-  /services:
+  /api/v0beta1/services:
     post:
       tags:
       - Services
@@ -185,9 +186,9 @@ paths:
                 - type
                 - error_code
                 - message
-      operationId: postServices
+      operationId: postApiV0beta1Services
       x-operation-id-source: derived
-  /services/{id}:
+  /api/v0beta1/services/{id}:
     put:
       tags:
       - Services
@@ -366,7 +367,7 @@ paths:
                 - type
                 - error_code
                 - message
-      operationId: putServicesById
+      operationId: putApiV0beta1ServicesById
       x-operation-id-source: derived
     delete:
       tags:
@@ -475,7 +476,7 @@ paths:
                 - type
                 - error_code
                 - message
-      operationId: deleteServicesById
+      operationId: deleteApiV0beta1ServicesById
       x-operation-id-source: derived
 components:
   schemas:
@@ -518,3 +519,13 @@ components:
       - ports
       - created_at
       - updated_at
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer token: an Amika CLI session token or an Amika API key.'
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: wos-session
+      description: Browser session cookie set after sign-in.

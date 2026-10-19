@@ -1,11 +1,12 @@
 openapi: 3.2.0
 info:
-  title: Amika API — v0beta1 Docker registries API
-  version: 0beta1
+  title: Amika Docker registries API
+  version: 0beta
+  description: HTTP API for Amika coding agents. Versioned per Google AIP-185.
 tags:
 - name: Docker registries
 paths:
-  /docker-registries:
+  /api/v0beta1/docker-registries:
     get:
       tags:
       - Docker registries
@@ -80,7 +81,7 @@ paths:
                 - type
                 - error_code
                 - message
-      operationId: getDockerRegistries
+      operationId: getApiV0beta1DockerRegistries
       x-operation-id-source: derived
     post:
       tags:
@@ -221,9 +222,9 @@ paths:
                 - type
                 - error_code
                 - message
-      operationId: postDockerRegistries
+      operationId: postApiV0beta1DockerRegistries
       x-operation-id-source: derived
-  /docker-registries/{id}:
+  /api/v0beta1/docker-registries/{id}:
     delete:
       tags:
       - Docker registries
@@ -361,32 +362,10 @@ paths:
                 - type
                 - error_code
                 - message
-      operationId: deleteDockerRegistriesById
+      operationId: deleteApiV0beta1DockerRegistriesById
       x-operation-id-source: derived
 components:
   schemas:
-    CreateDockerRegistryRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          minLength: 1
-        url:
-          type: string
-          minLength: 1
-        username:
-          type: string
-          minLength: 1
-        password:
-          type: string
-          minLength: 1
-        project:
-          type: string
-      required:
-      - name
-      - url
-      - username
-      - password
     DockerRegistry:
       type: object
       properties:
@@ -424,7 +403,39 @@ components:
       - daytona_registry_id
       - created_at
       - updated_at
+    CreateDockerRegistryRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+        url:
+          type: string
+          minLength: 1
+        username:
+          type: string
+          minLength: 1
+        password:
+          type: string
+          minLength: 1
+        project:
+          type: string
+      required:
+      - name
+      - url
+      - username
+      - password
     ListDockerRegistriesResponse:
       type: array
       items:
         $ref: '#/components/schemas/DockerRegistry'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer token: an Amika CLI session token or an Amika API key.'
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: wos-session
+      description: Browser session cookie set after sign-in.

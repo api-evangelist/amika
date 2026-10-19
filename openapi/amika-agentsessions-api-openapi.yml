@@ -1,0 +1,1003 @@
+openapi: 3.2.0
+info:
+  title: Amika Agent Sessions API
+  version: 0beta
+  description: HTTP API for Amika coding agents. Versioned per Google AIP-185.
+tags:
+- name: AgentSessions
+paths:
+  /api/v0beta1/agent-sessions:
+    post:
+      tags:
+      - AgentSessions
+      summary: Send a message to a coding agent, creating a sandbox if needed
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentSessionSendRequest'
+      responses:
+        '200':
+          description: Agent response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentSessionSendResponse'
+        '400':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '401':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '403':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '404':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '409':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+      operationId: postApiV0beta1AgentSessions
+      x-operation-id-source: derived
+    get:
+      tags:
+      - AgentSessions
+      summary: List the org's agent-session chats
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      parameters:
+      - schema:
+          type: integer
+          minimum: 0
+          exclusiveMinimum: true
+          maximum: 200
+        required: false
+        name: limit
+        in: query
+      - schema:
+          type: integer
+          nullable: true
+          minimum: 0
+        required: false
+        name: offset
+        in: query
+      responses:
+        '200':
+          description: Agent-session chats, newest first.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAgentSessionsResponse'
+        '401':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '403':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+      operationId: getApiV0beta1AgentSessions
+      x-operation-id-source: derived
+  /api/v0beta1/agent-sessions/stream:
+    post:
+      tags:
+      - AgentSessions
+      summary: Send a message to a coding agent, streaming the reply (SSE)
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentSessionSendRequest'
+      responses:
+        '200':
+          description: 'A `text/event-stream` of the send. Frames are named by the SSE `event:` field: `status`, `delta`, terminal `done` (the full `AgentSessionSendResponse`), or `error`.'
+          content:
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/AgentSessionStreamFrame'
+        '400':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '401':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '403':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '404':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '409':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+      operationId: postApiV0beta1AgentSessionsStream
+      x-operation-id-source: derived
+  /api/v0beta1/agent-sessions/{id}:
+    get:
+      tags:
+      - AgentSessions
+      summary: Read an agent session
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      parameters:
+      - schema:
+          type: string
+          minLength: 1
+        required: true
+        name: id
+        in: path
+      responses:
+        '200':
+          description: Agent session.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentSessionDetail'
+        '401':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '403':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '404':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+      operationId: getApiV0beta1AgentSessionsById
+      x-operation-id-source: derived
+  /api/v0beta1/agent-sessions/{id}/events:
+    get:
+      tags:
+      - AgentSessions
+      summary: Stream a session's events (SSE)
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      parameters:
+      - schema:
+          type: string
+          minLength: 1
+        required: true
+        name: id
+        in: path
+      - schema:
+          type: string
+          pattern: ^\d+$
+        required: false
+        name: after_seq
+        in: query
+      - schema:
+          type: string
+          pattern: ^\d+$
+        required: false
+        name: max_ms
+        in: query
+      - schema:
+          type: string
+          enum:
+          - '0'
+          - '1'
+          - 'true'
+          - 'false'
+          - 'yes'
+          - 'no'
+        required: false
+        name: follow
+        in: query
+      - schema:
+          type: string
+          enum:
+          - '0'
+          - '1'
+          - 'true'
+          - 'false'
+        required: false
+        name: include_raw
+        in: query
+      responses:
+        '200':
+          description: A `text/event-stream` of the session's events. Each event frame's `id` is the event `seq` (a resume cursor); `event` is the kind. Control frames `done`/`timeout`/`heartbeat`/`error` are also sent.
+          content:
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/AgentSessionEventFrame'
+        '400':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '401':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '403':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '404':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+      operationId: getApiV0beta1AgentSessionsByIdEvents
+      x-operation-id-source: derived
+components:
+  schemas:
+    AgentSessionUsage:
+      type: object
+      properties:
+        cost_usd:
+          type: number
+        input_tokens:
+          type: integer
+          minimum: 0
+        output_tokens:
+          type: integer
+          minimum: 0
+        cache_read_tokens:
+          type: integer
+          minimum: 0
+        cache_creation_tokens:
+          type: integer
+          minimum: 0
+        duration_ms:
+          type: integer
+          minimum: 0
+        num_turns:
+          type: integer
+          minimum: 0
+    AgentSessionMessage:
+      type: object
+      properties:
+        role:
+          type: string
+        content:
+          type: string
+        timestamp:
+          type: string
+        is_error:
+          type: boolean
+      required:
+      - role
+      - content
+      - timestamp
+    AgentSessionSummary:
+      type: object
+      properties:
+        session_id:
+          type: string
+        sandbox_id:
+          type: string
+        sandbox_name:
+          type: string
+          nullable: true
+        agent:
+          type: string
+        status:
+          type: string
+        preview:
+          type: string
+          nullable: true
+        model:
+          type: string
+          nullable: true
+        effort:
+          type: string
+          nullable: true
+        started_at:
+          anyOf:
+          - type: string
+          - type: string
+            format: date-time
+        ended_at:
+          anyOf:
+          - type: string
+          - type: string
+            format: date-time
+          - nullable: true
+        created_at:
+          anyOf:
+          - type: string
+          - type: string
+            format: date-time
+        updated_at:
+          anyOf:
+          - type: string
+          - type: string
+            format: date-time
+      required:
+      - session_id
+      - sandbox_id
+      - sandbox_name
+      - agent
+      - status
+      - preview
+      - model
+      - effort
+      - started_at
+      - ended_at
+      - created_at
+      - updated_at
+    AgentSessionStreamFrame:
+      anyOf:
+      - type: object
+        properties:
+          phase:
+            type: string
+            enum:
+            - creating_sandbox
+            - sandbox_ready
+          sandbox_id:
+            type: string
+        required:
+        - phase
+      - type: object
+        properties:
+          text:
+            type: string
+        required:
+        - text
+      - $ref: '#/components/schemas/AgentSessionSendResponse'
+      - type: object
+        properties:
+          error:
+            type: string
+        required:
+        - error
+    AgentSessionSendRequest:
+      type: object
+      properties:
+        message:
+          type: string
+          minLength: 1
+        agent:
+          type: string
+          enum:
+          - claude
+          - codex
+        session_id:
+          type: string
+          minLength: 1
+        sandbox_id:
+          type: string
+          minLength: 1
+        new_session:
+          type: boolean
+        model:
+          type: string
+          nullable: true
+          enum:
+          - fable
+          - opus
+          - sonnet
+          - haiku
+          - gpt-5.6-sol
+          - gpt-5.6-terra
+          - gpt-5.6-luna
+          - gpt-5.5
+          - gpt-5.2
+          - null
+        effort:
+          type: string
+          nullable: true
+          enum:
+          - low
+          - medium
+          - high
+          - xhigh
+          - max
+          - null
+        repo_url:
+          type: string
+          minLength: 1
+        branch:
+          type: string
+          minLength: 1
+        new_branch_name:
+          type: string
+          minLength: 1
+      required:
+      - message
+    ListAgentSessionsResponse:
+      type: object
+      properties:
+        sessions:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentSessionSummary'
+        total:
+          type: integer
+          minimum: 0
+      required:
+      - sessions
+      - total
+    AgentSessionDetail:
+      allOf:
+      - $ref: '#/components/schemas/AgentSessionSummary'
+      - type: object
+        properties:
+          messages:
+            type: array
+            items:
+              $ref: '#/components/schemas/AgentSessionMessage'
+        required:
+        - messages
+    AgentSessionEventFrame:
+      type: object
+      properties:
+        seq:
+          type: integer
+          minimum: 0
+        id:
+          type: string
+        kind:
+          type: string
+        payload:
+          type: object
+          additionalProperties:
+            nullable: true
+        created_at:
+          anyOf:
+          - type: string
+          - type: string
+            format: date-time
+      required:
+      - seq
+      - id
+      - kind
+      - payload
+      - created_at
+    AgentSessionSendResponse:
+      type: object
+      properties:
+        session_id:
+          type: string
+        sandbox_id:
+          type: string
+        agent:
+          type: string
+          enum:
+          - claude
+          - codex
+        response:
+          type: string
+        is_error:
+          type: boolean
+          description: 'True when the turn failed. The failure is still a 200: `response` carries the agent CLI''s own message (e.g. "Not logged in · Please run /login").'
+        is_new_session:
+          type: boolean
+        created_sandbox:
+          type: boolean
+        usage:
+          $ref: '#/components/schemas/AgentSessionUsage'
+      required:
+      - session_id
+      - sandbox_id
+      - agent
+      - response
+      - is_error
+      - is_new_session
+      - created_sandbox
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer token: an Amika CLI session token or an Amika API key.'
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: wos-session
+      description: Browser session cookie set after sign-in.

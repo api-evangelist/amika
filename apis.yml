@@ -325,6 +325,66 @@ apis:
     url: data-model/amika-data-model.yml
   - type: Conformance
     url: conformance/amika-conformance.yml
+- aid: amika:amika-agentsessions-api
+  name: Amika Agent Sessions API
+  description: The AgentSessions API from Amika — 4 operation(s) for agentsessions.
+  humanURL: https://docs.amika.dev/reference/api-reference
+  baseURL: https://app.amika.dev/api/v0beta1
+  tags:
+  - AgentSessions
+  properties:
+  - type: OpenAPI
+    url: openapi/amika-agentsessions-api-openapi.yml
+- aid: amika:amika-hosts-api
+  name: Amika Hosts API
+  description: The Hosts API from Amika — 3 operation(s) for hosts.
+  humanURL: https://docs.amika.dev/reference/api-reference
+  baseURL: https://app.amika.dev/api/v0beta1
+  tags:
+  - Hosts
+  properties:
+  - type: OpenAPI
+    url: openapi/amika-hosts-api-openapi.yml
+- aid: amika:amika-linear-api
+  name: Amika Linear API
+  description: The Linear API from Amika — 1 operation(s) for linear.
+  humanURL: https://docs.amika.dev/reference/api-reference
+  baseURL: https://app.amika.dev/api/v0beta1
+  tags:
+  - Linear
+  properties:
+  - type: OpenAPI
+    url: openapi/amika-linear-api-openapi.yml
+- aid: amika:amika-meta-api
+  name: Amika Meta API
+  description: The Meta API from Amika — 1 operation(s) for meta.
+  humanURL: https://docs.amika.dev/reference/api-reference
+  baseURL: https://app.amika.dev/api/v0beta1
+  tags:
+  - Meta
+  properties:
+  - type: OpenAPI
+    url: openapi/amika-meta-api-openapi.yml
+- aid: amika:amika-sandboxbindings-api
+  name: Amika Sandbox Bindings API
+  description: The SandboxBindings API from Amika — 3 operation(s) for sandboxbindings.
+  humanURL: https://docs.amika.dev/reference/api-reference
+  baseURL: https://app.amika.dev/api/v0beta1
+  tags:
+  - SandboxBindings
+  properties:
+  - type: OpenAPI
+    url: openapi/amika-sandboxbindings-api-openapi.yml
+- aid: amika:amika-sandboxservices-api
+  name: Amika Sandbox Services API
+  description: The SandboxServices API from Amika — 2 operation(s) for sandboxservices.
+  humanURL: https://docs.amika.dev/reference/api-reference
+  baseURL: https://app.amika.dev/api/v0beta1
+  tags:
+  - SandboxServices
+  properties:
+  - type: OpenAPI
+    url: openapi/amika-sandboxservices-api-openapi.yml
 common:
 - url: https://www.amika.dev/blog
   type: Blog

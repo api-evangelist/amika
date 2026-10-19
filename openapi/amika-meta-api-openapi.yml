@@ -1,0 +1,56 @@
+openapi: 3.2.0
+info:
+  title: Amika Meta API
+  version: 0beta
+  description: HTTP API for Amika coding agents. Versioned per Google AIP-185.
+tags:
+- name: Meta
+paths:
+  /api/versions:
+    get:
+      tags:
+      - Meta
+      summary: Supported API release tiers
+      description: Returns the server's supported release levels (stable / beta / alpha) and the sunset schedule for any deprecated tiers. Unauthenticated.
+      responses:
+        '200':
+          description: Release tier listing
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  stable:
+                    type: array
+                    items:
+                      type: string
+                  beta:
+                    type: array
+                    items:
+                      type: string
+                  alpha:
+                    type: array
+                    items:
+                      type: string
+                  deprecated:
+                    type: object
+                    additionalProperties:
+                      type: string
+                required:
+                - stable
+                - beta
+                - alpha
+                - deprecated
+      operationId: getApiVersions
+      x-operation-id-source: derived
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer token: an Amika CLI session token or an Amika API key.'
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: wos-session
+      description: Browser session cookie set after sign-in.

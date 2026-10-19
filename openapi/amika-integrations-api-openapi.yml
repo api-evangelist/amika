@@ -1,11 +1,12 @@
 openapi: 3.2.0
 info:
-  title: Amika API — v0beta1 Integrations API
-  version: 0beta1
+  title: Amika Integrations API
+  version: 0beta
+  description: HTTP API for Amika coding agents. Versioned per Google AIP-185.
 tags:
 - name: Integrations
 paths:
-  /integrations/credentials:
+  /api/v0beta1/integrations/credentials:
     get:
       tags:
       - Integrations
@@ -80,9 +81,9 @@ paths:
                 - type
                 - error_code
                 - message
-      operationId: getIntegrationsCredentials
+      operationId: getApiV0beta1IntegrationsCredentials
       x-operation-id-source: derived
-  /integrations/{provider}/credentials:
+  /api/v0beta1/integrations/{provider}/credentials:
     delete:
       tags:
       - Integrations
@@ -160,7 +161,7 @@ paths:
                 - type
                 - error_code
                 - message
-      operationId: deleteIntegrationsByProviderCredentials
+      operationId: deleteApiV0beta1IntegrationsByProviderCredentials
       x-operation-id-source: derived
 components:
   schemas:
@@ -176,3 +177,13 @@ components:
         required:
         - provider
         - connected
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer token: an Amika CLI session token or an Amika API key.'
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: wos-session
+      description: Browser session cookie set after sign-in.

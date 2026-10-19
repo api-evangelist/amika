@@ -1,11 +1,12 @@
 openapi: 3.2.0
 info:
-  title: Amika API — v0beta1 Downloads API
-  version: 0beta1
+  title: Amika Downloads API
+  version: 0beta
+  description: HTTP API for Amika coding agents. Versioned per Google AIP-185.
 tags:
 - name: Downloads
 paths:
-  /storage/downloads:
+  /api/v0beta1/storage/downloads:
     get:
       tags:
       - Downloads
@@ -188,7 +189,7 @@ paths:
                 - type
                 - error_code
                 - message
-      operationId: getStorageDownloads
+      operationId: getApiV0beta1StorageDownloads
       x-operation-id-source: derived
     post:
       tags:
@@ -389,37 +390,10 @@ paths:
                 - type
                 - error_code
                 - message
-      operationId: postStorageDownloads
+      operationId: postApiV0beta1StorageDownloads
       x-operation-id-source: derived
 components:
   schemas:
-    CreateDownloadRequest:
-      type: object
-      properties:
-        filename:
-          type: string
-          minLength: 1
-        download:
-          type: boolean
-          default: false
-      required:
-      - filename
-    DownloadResponse:
-      type: object
-      properties:
-        bucket:
-          type: string
-        path:
-          type: string
-        download_url:
-          type: string
-        expires_in:
-          type: integer
-      required:
-      - bucket
-      - path
-      - download_url
-      - expires_in
     DownloadObject:
       type: object
       properties:
@@ -456,3 +430,40 @@ components:
       - objects
       - expires_in
       - next_cursor
+    CreateDownloadRequest:
+      type: object
+      properties:
+        filename:
+          type: string
+          minLength: 1
+        download:
+          type: boolean
+          default: false
+      required:
+      - filename
+    DownloadResponse:
+      type: object
+      properties:
+        bucket:
+          type: string
+        path:
+          type: string
+        download_url:
+          type: string
+        expires_in:
+          type: integer
+      required:
+      - bucket
+      - path
+      - download_url
+      - expires_in
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer token: an Amika CLI session token or an Amika API key.'
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: wos-session
+      description: Browser session cookie set after sign-in.

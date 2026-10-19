@@ -1,0 +1,705 @@
+openapi: 3.2.0
+info:
+  title: Amika Sandbox Bindings API
+  version: 0beta
+  description: HTTP API for Amika coding agents. Versioned per Google AIP-185.
+tags:
+- name: SandboxBindings
+paths:
+  /api/v0beta1/sandbox-bindings:
+    get:
+      tags:
+      - SandboxBindings
+      summary: List sandbox bindings for the caller's organization
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          description: Bindings.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListSandboxBindingsResponse'
+        '401':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '403':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '404':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+      operationId: getApiV0beta1SandboxBindings
+      x-operation-id-source: derived
+  /api/v0beta1/sandbox-bindings/{id}:
+    delete:
+      tags:
+      - SandboxBindings
+      summary: Delete a sandbox binding
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      parameters:
+      - schema:
+          type: string
+          minLength: 1
+        required: true
+        name: id
+        in: path
+      responses:
+        '204':
+          description: Deleted.
+        '401':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '403':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '404':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+      operationId: deleteApiV0beta1SandboxBindingsById
+      x-operation-id-source: derived
+  /api/v0beta1/sandboxes/{sandbox_ref}/bindings:
+    post:
+      tags:
+      - SandboxBindings
+      summary: Bind a sandbox to a GitHub branch or pull request
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      parameters:
+      - schema:
+          type: string
+          minLength: 1
+        required: true
+        name: sandbox_ref
+        in: path
+      - schema:
+          type: string
+          enum:
+          - name
+          - id
+          - ref
+          - name_or_id
+          description: 'How to resolve the parent sandbox: ref/name_or_id (default), name, or id.'
+        required: false
+        description: 'How to resolve the parent sandbox: ref/name_or_id (default), name, or id.'
+        name: sandbox_by
+        in: query
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSandboxBindingRequest'
+      responses:
+        '201':
+          description: Binding created or already present.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateSandboxBindingResponse'
+        '400':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '401':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '403':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '404':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '409':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+      operationId: postApiV0beta1SandboxesBySandboxRefBindings
+      x-operation-id-source: derived
+    get:
+      tags:
+      - SandboxBindings
+      summary: List a sandbox's bindings
+      security:
+      - bearerAuth: []
+      - cookieAuth: []
+      parameters:
+      - schema:
+          type: string
+          minLength: 1
+        required: true
+        name: sandbox_ref
+        in: path
+      - schema:
+          type: string
+          enum:
+          - name
+          - id
+          - ref
+          - name_or_id
+          description: 'How to resolve the parent sandbox: ref/name_or_id (default), name, or id.'
+        required: false
+        description: 'How to resolve the parent sandbox: ref/name_or_id (default), name, or id.'
+        name: sandbox_by
+        in: query
+      responses:
+        '200':
+          description: Bindings.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListSandboxBindingsResponse'
+        '401':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '403':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '404':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+        '409':
+          description: Error
+          headers:
+            x-trace-id:
+              description: Per-request trace id for correlating responses with logs.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - error
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      nullable: true
+                  trace_id:
+                    type: string
+                required:
+                - type
+                - error_code
+                - message
+      operationId: getApiV0beta1SandboxesBySandboxRefBindings
+      x-operation-id-source: derived
+components:
+  schemas:
+    CreateSandboxBindingRequest:
+      anyOf:
+      - type: object
+        properties:
+          target_url:
+            type: string
+            format: uri
+        required:
+        - target_url
+        additionalProperties: false
+      - type: object
+        properties:
+          target:
+            type: object
+            properties:
+              kind:
+                type: string
+                enum:
+                - github_branch
+              repository:
+                type: object
+                properties:
+                  owner:
+                    type: string
+                    minLength: 1
+                    maxLength: 255
+                  name:
+                    type: string
+                    minLength: 1
+                    maxLength: 255
+                required:
+                - owner
+                - name
+                additionalProperties: false
+              branch:
+                type: string
+                minLength: 1
+                maxLength: 1024
+            required:
+            - kind
+            - repository
+            - branch
+            additionalProperties: false
+          rebind:
+            type: boolean
+            default: false
+        required:
+        - target
+        additionalProperties: false
+    SandboxBinding:
+      type: object
+      properties:
+        id:
+          type: string
+        sandbox_id:
+          type: string
+        target_namespace:
+          type: string
+        target_kind:
+          type: string
+        target_id:
+          type: string
+        target_url:
+          type: string
+          format: uri
+        relationship:
+          type: string
+        metadata:
+          type: object
+          additionalProperties:
+            nullable: true
+        system_metadata:
+          type: object
+          additionalProperties:
+            nullable: true
+        created_by_kind:
+          type: string
+          enum:
+          - user
+          - system
+        created_by_id:
+          type: string
+        created_at:
+          anyOf:
+          - type: string
+          - type: string
+            format: date-time
+        updated_at:
+          anyOf:
+          - type: string
+          - type: string
+            format: date-time
+      required:
+      - id
+      - sandbox_id
+      - target_namespace
+      - target_kind
+      - target_id
+      - target_url
+      - relationship
+      - metadata
+      - system_metadata
+      - created_by_kind
+      - created_by_id
+      - created_at
+      - updated_at
+    ListSandboxBindingsResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SandboxBinding'
+      required:
+      - items
+    CreateSandboxBindingResponse:
+      type: object
+      properties:
+        id:
+          type: string
+      required:
+      - id
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer token: an Amika CLI session token or an Amika API key.'
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: wos-session
+      description: Browser session cookie set after sign-in.

@@ -1,11 +1,12 @@
 openapi: 3.2.0
 info:
-  title: Amika API — v0beta1 Git user settings API
-  version: 0beta1
+  title: Amika Git user settings API
+  version: 0beta
+  description: HTTP API for Amika coding agents. Versioned per Google AIP-185.
 tags:
 - name: Git user settings
 paths:
-  /git-user-settings:
+  /api/v0beta1/git-user-settings:
     get:
       tags:
       - Git user settings
@@ -80,7 +81,7 @@ paths:
                 - type
                 - error_code
                 - message
-      operationId: getGitUserSettings
+      operationId: getApiV0beta1GitUserSettings
       x-operation-id-source: derived
     post:
       tags:
@@ -191,10 +192,47 @@ paths:
                 - type
                 - error_code
                 - message
-      operationId: postGitUserSettings
+      operationId: postApiV0beta1GitUserSettings
       x-operation-id-source: derived
 components:
   schemas:
+    GitUserSettingsRow:
+      type: object
+      properties:
+        id:
+          type: string
+        org_id:
+          type: string
+        user_id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - id
+      - org_id
+      - user_id
+      - name
+      - email
+      - created_at
+      - updated_at
+    UpsertGitUserSettingsRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+        email:
+          type: string
+          minLength: 1
+      required:
+      - name
+      - email
     GitUserSettingsResponse:
       anyOf:
       - type: object
@@ -241,40 +279,13 @@ components:
         required:
         - configured
         - suggestion
-    GitUserSettingsRow:
-      type: object
-      properties:
-        id:
-          type: string
-        org_id:
-          type: string
-        user_id:
-          type: string
-        name:
-          type: string
-        email:
-          type: string
-        created_at:
-          type: string
-        updated_at:
-          type: string
-      required:
-      - id
-      - org_id
-      - user_id
-      - name
-      - email
-      - created_at
-      - updated_at
-    UpsertGitUserSettingsRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          minLength: 1
-        email:
-          type: string
-          minLength: 1
-      required:
-      - name
-      - email
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer token: an Amika CLI session token or an Amika API key.'
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: wos-session
+      description: Browser session cookie set after sign-in.

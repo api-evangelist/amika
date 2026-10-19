@@ -1,11 +1,12 @@
 openapi: 3.2.0
 info:
-  title: Amika API — v0beta1 Slack API
-  version: 0beta1
+  title: Amika Slack API
+  version: 0beta
+  description: HTTP API for Amika coding agents. Versioned per Google AIP-185.
 tags:
 - name: Slack
 paths:
-  /slack/settings:
+  /api/v0beta1/slack/settings:
     get:
       tags:
       - Slack
@@ -110,7 +111,7 @@ paths:
                 - type
                 - error_code
                 - message
-      operationId: getSlackSettings
+      operationId: getApiV0beta1SlackSettings
       x-operation-id-source: derived
     put:
       tags:
@@ -221,9 +222,9 @@ paths:
                 - type
                 - error_code
                 - message
-      operationId: putSlackSettings
+      operationId: putApiV0beta1SlackSettings
       x-operation-id-source: derived
-  /slack/channel-settings:
+  /api/v0beta1/slack/channel-settings:
     get:
       tags:
       - Slack
@@ -298,7 +299,7 @@ paths:
                 - type
                 - error_code
                 - message
-      operationId: getSlackChannelSettings
+      operationId: getApiV0beta1SlackChannelSettings
       x-operation-id-source: derived
     put:
       tags:
@@ -409,7 +410,7 @@ paths:
                 - type
                 - error_code
                 - message
-      operationId: putSlackChannelSettings
+      operationId: putApiV0beta1SlackChannelSettings
       x-operation-id-source: derived
     delete:
       tags:
@@ -516,34 +517,10 @@ paths:
                 - type
                 - error_code
                 - message
-      operationId: deleteSlackChannelSettings
+      operationId: deleteApiV0beta1SlackChannelSettings
       x-operation-id-source: derived
 components:
   schemas:
-    SlackSeenChannel:
-      type: object
-      properties:
-        slack_team_id:
-          type: string
-        slack_team_name:
-          type: string
-          nullable: true
-        slack_channel_id:
-          type: string
-        slack_channel_name:
-          type: string
-          nullable: true
-        last_seen_at:
-          anyOf:
-          - type: string
-          - type: string
-            format: date-time
-      required:
-      - slack_team_id
-      - slack_team_name
-      - slack_channel_id
-      - slack_channel_name
-      - last_seen_at
     SlackOrgSettingsUpsert:
       type: object
       properties:
@@ -565,18 +542,6 @@ components:
       - repository_id
       - agent_name
       - system_prompt
-    SlackChannelSettingsDelete:
-      type: object
-      properties:
-        slack_team_id:
-          type: string
-          minLength: 1
-        slack_channel_id:
-          type: string
-          minLength: 1
-      required:
-      - slack_team_id
-      - slack_channel_id
     SlackChannelSettingsList:
       type: object
       properties:
@@ -626,32 +591,6 @@ components:
       - system_prompt
       - created_at
       - updated_at
-    SlackChannelSettingsUpsert:
-      type: object
-      properties:
-        slack_team_id:
-          type: string
-          minLength: 1
-        slack_channel_id:
-          type: string
-          minLength: 1
-        repository_id:
-          type: string
-          nullable: true
-          minLength: 1
-        agent_name:
-          type: string
-          nullable: true
-          enum:
-          - claude
-          - codex
-          - null
-        system_prompt:
-          type: string
-          nullable: true
-      required:
-      - slack_team_id
-      - slack_channel_id
     SlackChannelSettings:
       type: object
       properties:
@@ -693,3 +632,75 @@ components:
       - system_prompt
       - created_at
       - updated_at
+    SlackChannelSettingsDelete:
+      type: object
+      properties:
+        slack_team_id:
+          type: string
+          minLength: 1
+        slack_channel_id:
+          type: string
+          minLength: 1
+      required:
+      - slack_team_id
+      - slack_channel_id
+    SlackChannelSettingsUpsert:
+      type: object
+      properties:
+        slack_team_id:
+          type: string
+          minLength: 1
+        slack_channel_id:
+          type: string
+          minLength: 1
+        repository_id:
+          type: string
+          nullable: true
+          minLength: 1
+        agent_name:
+          type: string
+          nullable: true
+          enum:
+          - claude
+          - codex
+          - null
+        system_prompt:
+          type: string
+          nullable: true
+      required:
+      - slack_team_id
+      - slack_channel_id
+    SlackSeenChannel:
+      type: object
+      properties:
+        slack_team_id:
+          type: string
+        slack_team_name:
+          type: string
+          nullable: true
+        slack_channel_id:
+          type: string
+        slack_channel_name:
+          type: string
+          nullable: true
+        last_seen_at:
+          anyOf:
+          - type: string
+          - type: string
+            format: date-time
+      required:
+      - slack_team_id
+      - slack_team_name
+      - slack_channel_id
+      - slack_channel_name
+      - last_seen_at
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer token: an Amika CLI session token or an Amika API key.'
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: wos-session
+      description: Browser session cookie set after sign-in.

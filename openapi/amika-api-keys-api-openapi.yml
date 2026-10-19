@@ -1,19 +1,31 @@
 openapi: 3.2.0
 info:
-  title: Amika API — v0beta1 API keys API
-  version: 0beta1
+  title: Amika API keys API
+  version: 0beta
+  description: HTTP API for Amika coding agents. Versioned per Google AIP-185.
 tags:
 - name: API Keys
 paths:
-  /api-keys:
+  /api/v0beta1/api-keys:
     get:
       tags:
       - API Keys
-      summary: List organization API keys
+      summary: List API keys
       security:
       - bearerAuth: []
       - cookieAuth: []
       parameters:
+      - schema:
+          type: string
+          enum:
+          - organization
+          - user
+          description: Restrict the listing to a single scope. Omit to list both organization- and user-scoped keys merged together.
+          example: organization
+        required: false
+        description: Restrict the listing to a single scope. Omit to list both organization- and user-scoped keys merged together.
+        name: scope
+        in: query
       - schema:
           type: string
           minLength: 1
@@ -35,7 +47,7 @@ paths:
         in: query
       responses:
         '200':
-          description: Page of API keys for the caller's organization.
+          description: 'Page of API keys visible to the caller: organization-scoped keys for their org plus user-scoped keys they own, unless narrowed with `scope`.'
           content:
             application/json:
               schema:
@@ -130,7 +142,7 @@ paths:
                 - type
                 - error_code
                 - message
-      operationId: getApiKeys
+      operationId: getApiV0beta1ApiKeys
       x-operation-id-source: derived
     post:
       tags:
@@ -241,9 +253,9 @@ paths:
                 - type
                 - error_code
                 - message
-      operationId: postApiKeys
+      operationId: postApiV0beta1ApiKeys
       x-operation-id-source: derived
-  /api-keys/{id}:
+  /api/v0beta1/api-keys/{id}:
     delete:
       tags:
       - API Keys
@@ -261,6 +273,18 @@ paths:
         description: WorkOS API key id.
         name: id
         in: path
+      - schema:
+          type: string
+          enum:
+          - organization
+          - user
+          default: organization
+          description: Scope of the key to delete. Defaults to `organization`; pass `user` to revoke a user-scoped key.
+          example: organization
+        required: false
+        description: Scope of the key to delete. Defaults to `organization`; pass `user` to revoke a user-scoped key.
+        name: scope
+        in: query
       responses:
         '204':
           description: API key deleted.
@@ -354,19 +378,10 @@ paths:
                 - type
                 - error_code
                 - message
-      operationId: deleteApiKeysById
+      operationId: deleteApiV0beta1ApiKeysById
       x-operation-id-source: derived
 components:
   schemas:
-    ApiKeyWithValue:
-      allOf:
-      - $ref: '#/components/schemas/ApiKeySummary'
-      - type: object
-        properties:
-          value:
-            type: string
-        required:
-        - value
     ApiKeySummary:
       type: object
       properties:
@@ -374,6 +389,13 @@ components:
           type: string
         name:
           type: string
+        scope:
+          type: string
+          enum:
+          - organization
+          - user
+          description: Whether the key is scoped to the caller's organization or to the individual user who owns it.
+          example: organization
         obfuscatedValue:
           type: string
         lastUsedAt:
@@ -386,6 +408,7 @@ components:
       required:
       - id
       - name
+      - scope
       - obfuscatedValue
       - lastUsedAt
       - createdAt
@@ -418,5 +441,32 @@ components:
           type: string
           minLength: 1
           description: Human-readable name for the API key.
+        scope:
+          type: string
+          enum:
+          - organization
+          - user
+          default: organization
+          description: Scope of the key to create. Defaults to `organization`; pass `user` to mint a key owned by the calling user.
+          example: organization
       required:
       - name
+    ApiKeyWithValue:
+      allOf:
+      - $ref: '#/components/schemas/ApiKeySummary'
+      - type: object
+        properties:
+          value:
+            type: string
+        required:
+        - value
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer token: an Amika CLI session token or an Amika API key.'
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: wos-session
+      description: Browser session cookie set after sign-in.
