@@ -331,6 +331,8 @@ apis:
   humanURL: https://docs.amika.dev/reference/api-reference
   baseURL: https://app.amika.dev/api/v0beta1
   tags:
+  - Agent Sessions
+  tags_raw:
   - AgentSessions
   properties:
   - type: OpenAPI
