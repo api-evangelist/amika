@@ -64,6 +64,136 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Amika is a company surfaced as a portfolio company of y-combinator and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Amika is a Y Combinator-backed infrastructure company for running AI coding agents in isolated cloud sandboxes. Teams spawn agents from Slack, Linear, GitHub, a CLI, a TypeScript SDK, or the hosted HTTP API to understand a codebase, run in a root-access VM, execute programmable checks (tests, linters, type checkers), and open validated pull requests autonomously. The platform exposes a REST API (v0beta1) for managing repositories, sandboxes, snapshots, agent sessions, secrets, services, storage, and Slack integration, with API-key and OAuth device-flow authentication. Core primitives are shipped open source under the gofixpoint GitHub organization, including the amika CLI, the amikalog session-capture tool, and the @amika/sdk TypeScript client.
 
-Backed by: y-combinator
+**Areas:** Company · AI Agents · Coding Agents · Developer Tools · Sandbox · Infrastructure · CI/CD · Automation · Software Factory
+
+## Amika on APIs.io
+
+Everything profiled for Amika is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/amika/](https://apis.io/providers/amika/)** — or go straight to one of the APIs or properties below.
+
+### APIs (12)
+
+- [Amika API keys API](https://apis.io/apis/amika/amika-api-keys-api/) — The API keys API from Amika — 2 operation(s) for api keys.
+- [Amika Docker registries API](https://apis.io/apis/amika/amika-docker-registries-api/) — The Docker registries API from Amika — 2 operation(s) for docker registries.
+- [Amika Downloads API](https://apis.io/apis/amika/amika-downloads-api/) — The Downloads API from Amika — 1 operation(s) for downloads.
+- [Amika Git user settings API](https://apis.io/apis/amika/amika-git-user-settings-api/) — The Git user settings API from Amika — 1 operation(s) for git user settings.
+- [Amika Integrations API](https://apis.io/apis/amika/amika-integrations-api/) — The Integrations API from Amika — 2 operation(s) for integrations.
+- [Amika Repositories API](https://apis.io/apis/amika/amika-repositories-api/) — The Repositories API from Amika — 5 operation(s) for repositories.
+- [Amika Sandboxes API](https://apis.io/apis/amika/amika-sandboxes-api/) — The Sandboxes API from Amika — 16 operation(s) for sandboxes.
+- [Amika SandboxSnapshots API](https://apis.io/apis/amika/amika-sandboxsnapshots-api/) — The SandboxSnapshots API from Amika — 3 operation(s) for sandboxsnapshots.
+- [Amika Secrets API](https://apis.io/apis/amika/amika-secrets-api/) — The Secrets API from Amika — 11 operation(s) for secrets.
+- [Amika Services API](https://apis.io/apis/amika/amika-services-api/) — The Services API from Amika — 2 operation(s) for services.
+- [Amika Slack API](https://apis.io/apis/amika/amika-slack-api/) — The Slack API from Amika — 2 operation(s) for slack.
+- [Amika Uploads API](https://apis.io/apis/amika/amika-uploads-api/) — The Uploads API from Amika — 2 operation(s) for uploads.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [amika](https://apis.io/servers/amika/amika/)
+
+#### Collections (12)
+
+Postman and Open Collection request collections.
+
+- [Amika API — v0beta1 API keys API](https://apis.io/collections/amika/open-amika-api-keys-api/)
+- [Amika API — v0beta1 API keys Docker registries API](https://apis.io/collections/amika/open-amika-docker-registries-api/)
+- [Amika API — v0beta1 API keys Downloads API](https://apis.io/collections/amika/open-amika-downloads-api/)
+- [Amika API — v0beta1 API keys Git user settings API](https://apis.io/collections/amika/open-amika-git-user-settings-api/)
+- [Amika API — v0beta1 API keys Integrations API](https://apis.io/collections/amika/open-amika-integrations-api/)
+- [Amika API — v0beta1 API keys Repositories API](https://apis.io/collections/amika/open-amika-repositories-api/)
+- [Amika API — v0beta1 API keys Sandboxes API](https://apis.io/collections/amika/open-amika-sandboxes-api/)
+- [Amika API — v0beta1 API keys SandboxSnapshots API](https://apis.io/collections/amika/open-amika-sandboxsnapshots-api/)
+- [Amika API — v0beta1 API keys Secrets API](https://apis.io/collections/amika/open-amika-secrets-api/)
+- [Amika API — v0beta1 API keys Services API](https://apis.io/collections/amika/open-amika-services-api/)
+- [Amika API — v0beta1 API keys Slack API](https://apis.io/collections/amika/open-amika-slack-api/)
+- [Amika API — v0beta1 API keys Uploads API](https://apis.io/collections/amika/open-amika-uploads-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Amika Openapi Overlay](https://apis.io/overlays/amika/amika-openapi-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Amika Authentication](https://apis.io/security/amika/amika-authentication/)
+- [Amika Domain Security](https://apis.io/security/amika/amika-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.amika.dev)
+- [Documentation](https://docs.amika.dev)
+- [Getting started](https://docs.amika.dev/quickstart)
+- [API reference](https://docs.amika.dev/reference/api-reference)
+- [Pricing](https://www.amika.dev/pricing)
+- [Sign up](https://app.amika.dev/signup)
+- [Support](https://discord.gg/xDXk4KjGWg)
+- [Blog](https://www.amika.dev/blog)
+- [Terms of service](https://www.amika.dev/terms)
+- [Privacy policy](https://www.amika.dev/privacy)
+- [GitHub](https://github.com/gofixpoint)
+
+## API Evangelist rating
+
+**Kin Score 51.8** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 41.7 |
+| Contract governance | 4.5 |
+| Operational transparency | 23.7 |
+| Developer ergonomics | 73.2 |
+| Access clarity | 38.2 |
+
+**Agent readiness 16.2** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | — |
+
+**Regulatory alignment 24.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/amika/](https://apis.io/providers/amika/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Amika: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/amika/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
